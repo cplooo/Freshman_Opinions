@@ -68,6 +68,8 @@ def adjust_df(df, order):
 
 ######  读取Pickle文件
 df_freshman_original = load_data('df_freshman_original.pkl')
+##### 使用rename方法更改column名称
+df_freshman_original = df_freshman_original.rename(columns={'學系': '科系'})
 # df_freshman_original = pd.read_pickle('df_freshman_original.pkl')
 # df_freshman_original.shape  ## (1674, 186)
 # df_freshman_original.index  ## RangeIndex(start=0, stop=1674, step=1)
@@ -86,14 +88,14 @@ st.markdown("##")  ## 更大的间隔
 
 ###### 預設定 df_freshman 以防止在等待選擇院系輸入時, 發生後面程式df_freshman讀不到資料而產生錯誤
 choice='財金系' ##'化科系'
-df_freshman = df_freshman_original[df_freshman_original['學系']==choice]
+df_freshman = df_freshman_original[df_freshman_original['科系']==choice]
 choice_faculty = df_freshman['學院'].values[0]  ## 選擇學系所屬學院: '理學院'
 df_freshman_faculty = df_freshman_original[df_freshman_original['學院']==choice_faculty]  ## 挑出全校所屬學院之資料
 # df_freshman_faculty['學院']  
 ###### 預設定 selected_options, collections
 selected_options = ['化科系','企管系']
 # collections = [df_freshman_original[df_freshman_original['學院']==i] for i in selected_options]
-collections = [df_freshman_original[df_freshman_original['學系']==i] for i in selected_options]
+collections = [df_freshman_original[df_freshman_original['科系']==i] for i in selected_options]
 # collections = [df_freshman, df_freshman_faculty, df_freshman_original]
 # len(collections) ## 2
 # type(collections[0])   ## pandas.core.frame.DataFrame
@@ -143,9 +145,9 @@ global 院_系
 ###### 選擇 院 or 系:
 院_系 = st.text_input('以學系查詢請輸入 0, 以學院查詢請輸入 1  (說明: (i).以學系查詢時同時呈現學院及全校資料. (ii)可以選擇比較單位): ')
 if 院_系 == '0':
-    choice = st.selectbox('選擇學系', df_freshman_original['學系'].unique())
+    choice = st.selectbox('選擇學系', df_freshman_original['科系'].unique())
     #choice = '化科系'
-    df_freshman = df_freshman_original[df_freshman_original['學系']==choice]
+    df_freshman = df_freshman_original[df_freshman_original['科系']==choice]
     choice_faculty = df_freshman['學院'].values[0]  ## 選擇學系所屬學院
     df_freshman_faculty = df_freshman_original[df_freshman_original['學院']==choice_faculty]  ## 挑出全校所屬學院之資料
 
@@ -300,8 +302,8 @@ with st.expander("大學「學費」主要來源:"):
     # st.subheader("不同單位比較")
     if 院_系 == '0':
         ## 使用multiselect组件让用户进行多重选择
-        selected_options = st.multiselect('選擇比較學系：', df_freshman_original['學系'].unique(), default=['化科系','企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
-        collections = [df_freshman_original[df_freshman_original['學系']==i] for i in selected_options]
+        selected_options = st.multiselect('選擇比較學系：', df_freshman_original['科系'].unique(), default=['化科系','企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
+        collections = [df_freshman_original[df_freshman_original['科系']==i] for i in selected_options]
         dataframes = [Frequency_Distribution(df, column_index) for df in collections]
         ## 形成所有學系'項目'欄位的所有值
         desired_order  = list(set([item for df in dataframes for item in df['項目'].tolist()])) 
