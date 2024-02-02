@@ -766,7 +766,8 @@ with st.expander("我的入學管道:"):
     ### 设置标题和轴标签
     ax.set_title(item_name,fontsize=title_fontsize)
     # ax.set_xlabel('满意度',fontsize=xlabel_fontsize)
-    ax.set_ylabel('比例',fontsize=ylabel_fontsize)
+    # ax.set_ylabel('比例',fontsize=ylabel_fontsize)
+    ax.set_xlabel('比例',fontsize=ylabel_fontsize)
     ### 显示网格线
     plt.grid(True, linestyle='--', linewidth=0.5, color='gray')
     plt.tight_layout()
