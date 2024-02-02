@@ -724,7 +724,7 @@ with st.expander("我的入學管道:"):
     title_fontsize = 15
     xlabel_fontsize = 14
     ylabel_fontsize = 14
-    xticklabel_fontsize = 14
+    xticklabel_fontsize = 11
     annotation_fontsize = 8
     legend_fontsize = 14
     #### 绘制条形
