@@ -735,26 +735,34 @@ with st.expander("我的入學管道:"):
         # 生成当前分组的x轴位置
         index = np.arange(num_bars) + i * bar_width
         # index = r + i * bar_width
-        rects = ax.bar(index, df['比例'], width=bar_width, label=college_name)
+        # rects = ax.bar(index, df['比例'], width=bar_width, label=college_name)
+        rects = ax.barh(index, df['比例'], height=bar_width, label=college_name)
 
         # # 在每个条形上标示比例
         # for rect, ratio in zip(rects, df['比例']):
         #     ax.text(rect.get_x() + rect.get_width() / 2.0, rect.get_height(), f'{ratio:.2%}', ha='center', va='bottom',fontsize=annotation_fontsize)
     ### 添加图例
     ax.legend(fontsize=legend_fontsize)
-    ### 添加x轴标签
-    ## 计算每个组的中心位置作为x轴刻度位置
-    # group_centers = r + bar_width * (num_colleges / 2 - 0.5)
-    # group_centers = np.arange(len(dataframes[0]))
-    ## 添加x轴标签
-    # ax.set_xticks(group_centers)
-    # dataframes[0]['項目'].values
-    # "array(['個人興趣', '未來能找到好工作', '落點分析', '沒有特定理由', '家人的期望與建議', '師長推薦'],dtype=object)"
-    ax.set_xticks(r + bar_width * (len(dataframes) / 2))
-    ax.set_xticklabels(dataframes[0]['項目'].values, fontsize=xticklabel_fontsize)
-    # ax.set_xticklabels(['非常滿意', '滿意', '普通', '不滿意','非常不滿意'],fontsize=xticklabel_fontsize)
-    ## 调整x轴刻度标签的偏斜程度
-    plt.xticks(rotation=45)  # 以45度角倾斜刻度标签，您可以根据需要调整这个角度
+
+    # ### 添加x轴标签
+    # ## 计算每个组的中心位置作为x轴刻度位置
+    # # group_centers = r + bar_width * (num_colleges / 2 - 0.5)
+    # # group_centers = np.arange(len(dataframes[0]))
+    # ## 添加x轴标签
+    # # ax.set_xticks(group_centers)
+    # # dataframes[0]['項目'].values
+    # # "array(['個人興趣', '未來能找到好工作', '落點分析', '沒有特定理由', '家人的期望與建議', '師長推薦'],dtype=object)"
+    # ax.set_xticks(r + bar_width * (len(dataframes) / 2))
+    # ax.set_xticklabels(dataframes[0]['項目'].values, fontsize=xticklabel_fontsize)
+    # # ax.set_xticklabels(['非常滿意', '滿意', '普通', '不滿意','非常不滿意'],fontsize=xticklabel_fontsize)
+    # ## 调整x轴刻度标签的偏斜程度
+    # plt.xticks(rotation=45)  # 以45度角倾斜刻度标签，您可以根据需要调整这个角度
+
+    ### 设置y轴刻度标签
+    ax.set_yticks(r + bar_width*(len(dataframes) / 2))  # 调整位置以使标签居中对齐到每个条形
+    ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=xticklabel_fontsize)
+
+
     ### 设置标题和轴标签
     ax.set_title(item_name,fontsize=title_fontsize)
     # ax.set_xlabel('满意度',fontsize=xlabel_fontsize)
@@ -763,6 +771,7 @@ with st.expander("我的入學管道:"):
     plt.grid(True, linestyle='--', linewidth=0.5, color='gray')
     plt.tight_layout()
     # plt.show()
+
     ### 在Streamlit中显示
     st.pyplot(plt)
 
