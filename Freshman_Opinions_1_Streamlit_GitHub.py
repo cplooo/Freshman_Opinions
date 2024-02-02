@@ -753,6 +753,8 @@ with st.expander("我的入學管道:"):
     ax.set_xticks(r + bar_width * (len(dataframes) / 2))
     ax.set_xticklabels(dataframes[0]['項目'].values, fontsize=xticklabel_fontsize)
     # ax.set_xticklabels(['非常滿意', '滿意', '普通', '不滿意','非常不滿意'],fontsize=xticklabel_fontsize)
+    ## 调整x轴刻度标签的偏斜程度
+    plt.xticks(rotation=45)  # 以45度角倾斜刻度标签，您可以根据需要调整这个角度
     ### 设置标题和轴标签
     ax.set_title(item_name,fontsize=title_fontsize)
     # ax.set_xlabel('满意度',fontsize=xlabel_fontsize)
