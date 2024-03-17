@@ -307,7 +307,7 @@ df_freshman_original['學院'] = df_freshman_original['學院'].replace(replace_
 
 
 ####### 預先設定
-######
+###### 預設定院或系之選擇
 global 院_系 
 院_系 = '0'
 ###### 預設定 df_freshman 以防止在等待選擇院系輸入時, 發生後面程式df_freshman讀不到資料而產生錯誤
