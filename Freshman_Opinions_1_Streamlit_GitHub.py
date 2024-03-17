@@ -720,7 +720,7 @@ with st.expander("Q6. 原畢業學校所在地區:"):
 
     ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
     # st.write(choice)
-    st.write(f"<h2>{choice}</h2>", unsafe_allow_html=True)
+    st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
     st.write(result_df.to_html(index=False), unsafe_allow_html=True)
     st.markdown("##")  ## 更大的间隔
 
