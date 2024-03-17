@@ -565,7 +565,7 @@ st.markdown("##")  ## 更大的间隔
 
 
 ####### Q10 得知本校最主要的管道(水平長條圖)
-with st.expander("得知本校最主要的管道(多選題):"):
+with st.expander("Q10. 得知本校最主要的管道(多選題):"):
     # df_freshman.iloc[:,10] ## 10得知本校最主要的管道（可複選）
     column_index = 10
     item_name = "得知本校最主要的管道(多選題)"
