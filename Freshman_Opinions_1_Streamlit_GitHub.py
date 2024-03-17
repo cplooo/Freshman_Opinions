@@ -82,7 +82,7 @@ def adjust_df(df, order):
 
 ###### 畫圖形(單一學系或學院, 比較圖形)
 @st.cache_data(ttl=3600, show_spinner="正在處理資料...")  ## Add the caching decorator
-def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, selected_options):
+def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, selected_options=[]):
     ##### 使用Streamlit畫單一圖
     if 院_系 == '0':
         collections = [df_freshman, df_freshman_faculty, df_freshman_original]
