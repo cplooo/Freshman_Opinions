@@ -661,7 +661,7 @@ with st.expander("Q4. 文化不利背景（可複選）:"):
 
     # Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df, bar_width = 0.15)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
-    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=40,heigh1=10,width2=40,heigh2=10,width3=40,heigh3=10,title_fontsize=35,xlabel_fontsize = 34,ylabel_fontsize = 34,legend_fontsize = 34,xticklabel_fontsize = 40, yticklabel_fontsize = 40, annotation_fontsize = 34, bar_width = 0.2, fontsize_adjust=1)
+    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=40,heigh1=10,width2=40,heigh2=10,width3=40,heigh3=10,title_fontsize=35,xlabel_fontsize = 34,ylabel_fontsize = 34,legend_fontsize = 34,xticklabel_fontsize = 30, yticklabel_fontsize = 40, annotation_fontsize = 34, bar_width = 0.2, fontsize_adjust=1)
     
 st.markdown("##")  ## 更大的间隔 
 
