@@ -559,7 +559,42 @@ with st.expander("Q9. 我的入學管道:"):
     Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df,width1=15,heigh1=9,width2=15,heigh2=9,width3=15,heigh3=9,title_fontsize=17,xlabel_fontsize = 16,ylabel_fontsize = 16,legend_fontsize = 16)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     
-st.markdown("##")  ## 更大的间隔   
+st.markdown("##")  ## 更大的间隔
+
+
+
+
+####### Q10 得知本校最主要的管道(水平長條圖)
+with st.expander("得知本校最主要的管道(多選題):"):
+    # df_freshman.iloc[:,10] ## 10得知本校最主要的管道（可複選）
+    column_index = 10
+    item_name = "得知本校最主要的管道(多選題)"
+    column_title.append(df_freshman.columns[column_index][1:])
+
+
+    ##### 產出 result_df
+    result_df = Frequency_Distribution(df_freshman, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1)
+
+    ##### 存到 list 'df_streamlit'
+    df_streamlit.append(result_df)  
+
+    ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    st.write(result_df.to_html(index=False), unsafe_allow_html=True)
+    st.markdown("##")  ## 更大的间隔
+
+    ##### 使用Streamlit畫單一圖 & 比較圖
+    #### 畫比較圖時, 比較單位之選擇:
+    if 院_系 == '0':
+        ## 使用multiselect组件让用户进行多重选择
+        selected_options = st.multiselect('選擇比較學系：', df_freshman_original['科系'].unique(), default=[choice,'企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
+    if 院_系 == '1':
+        ## 使用multiselect组件让用户进行多重选择
+        selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
+
+    Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
+    # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
+    
+st.markdown("##")  ## 更大的间隔    
 
 
 
