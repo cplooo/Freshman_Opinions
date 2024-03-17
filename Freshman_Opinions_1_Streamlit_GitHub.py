@@ -258,7 +258,7 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
 
 
         ### 设置标题和轴标签
-        ax.set_title(item_name,fontsize=title_fontsize)
+        ax.set_title(item_name)
         # ax.set_title(item_name,fontsize=title_fontsize)
         # ax.set_xlabel('满意度',fontsize=xlabel_fontsize)
         ax.set_xlabel('比例')
