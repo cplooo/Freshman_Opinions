@@ -1098,7 +1098,7 @@ st.markdown("##")  ## 更大的间隔
 with st.expander("Q16. 目前就讀科系之專業領域:"):
     # df_freshman.iloc[:,16] ## 16目前就讀科系之專業領域
     column_index = 16
-    item_name = "目前就讀科系之專業領域"
+    item_name = "目前就讀科系之專業領域('其他'包含不知所屬領域)"
     column_title.append(df_freshman.columns[column_index][1:])
 
 
