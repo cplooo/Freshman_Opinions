@@ -452,6 +452,40 @@ column_title = []
 
 
 ####### 問卷的各項問題
+####### Q7 大學「學費」主要來源（可複選）
+with st.expander("大學「學費」主要來源(多選):"):
+    # df_freshman.iloc[:,7] ## 7大學「學費」主要來源（可複選）
+    column_index = 7
+    item_name = "大學「學費」主要來源(多選)"
+    column_title.append(df_freshman.columns[column_index][1:])
+
+
+    ##### 產出 result_df
+    result_df = Frequency_Distribution(df_freshman, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1)
+
+    ##### 存到 list 'df_streamlit'
+    df_streamlit.append(result_df)  
+
+    ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    st.write(result_df.to_html(index=False), unsafe_allow_html=True)
+    st.markdown("##")  ## 更大的间隔
+
+    ##### 使用Streamlit畫單一圖 & 比較圖
+    #### 畫比較圖時, 比較單位之選擇:
+    if 院_系 == '0':
+        ## 使用multiselect组件让用户进行多重选择
+        selected_options = st.multiselect('選擇比較學系：', df_freshman_original['科系'].unique(), default=[choice,'企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
+    if 院_系 == '1':
+        ## 使用multiselect组件让用户进行多重选择
+        selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
+
+    Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options)
+    # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
+    
+st.markdown("##")  ## 更大的间隔  
+
+
+
 ###### Q8 學習及生活費（書籍、住宿、交通、伙食等開銷）主要來源（可複選）
 with st.expander("8.學習及生活費（書籍、住宿、交通、伙食等開銷）主要來源(多選):"):
     # df_freshman.iloc[:,8] ## 8學習及生活費（書籍、住宿、交通、伙食等開銷）主要來源（可複選)
