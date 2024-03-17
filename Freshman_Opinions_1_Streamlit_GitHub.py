@@ -185,7 +185,7 @@ combined_df = pd.concat(dataframes, keys=selected_options)
 ####### 定義相關函數 (Part 2): 因為函數 'Draw' 的定義需要使用 'dataframes','combined_df' 來進行相關計算, 因此要放在以上 '預先設定' 之後才會有 'dataframes', 'combined_df' 的值
 ###### 畫圖形(單一學系或學院, 比較圖形)
 @st.cache_data(ttl=3600, show_spinner="正在處理資料...")  ## Add the caching decorator
-def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=pd.DataFrame(), selected_options=[], dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14):
+def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=pd.DataFrame(), selected_options=[], dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,bar_width = 0.2):
     ##### 使用Streamlit畫單一圖
     if 院_系 == '0':
         collections = [df_freshman, df_freshman_faculty, df_freshman_original]
@@ -209,7 +209,7 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         matplotlib.rcParams['font.family'] = 'Noto Sans CJK JP'
         matplotlib.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
         #### 设置条形的宽度
-        bar_width = 0.2
+        # bar_width = 0.2
         #### 设置y轴的位置
         r = np.arange(len(dataframes[0]))  ## len(result_df_理學_rr)=6, 因為result_df_理學_rr 有 6個 row: 非常滿意, 滿意, 普通, 不滿意, 非常不滿意
         #### 设置字体大小
@@ -277,7 +277,7 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         #### 绘制条形图
         ### 反轉 dataframe result_df 的所有行的值的次序,  使得表與圖的項目次序一致
         result_df = result_df.iloc[::-1].reset_index(drop=True)
-        plt.barh(result_df['項目'], result_df['人數'], label=choice)
+        plt.barh(result_df['項目'], result_df['人數'], label=choice, width=bar_width)
         #### 標示比例數據
         for i in range(len(result_df['項目'])):
             plt.text(result_df['人數'][i]+1, result_df['項目'][i], f'{result_df.iloc[:, 2][i]:.1%}', fontsize=14)
@@ -523,7 +523,7 @@ with st.expander("Q2. 身分別:"):
         ## 使用multiselect组件让用户进行多重选择
         selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
 
-    Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
+    Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df, bar_width = 0.15)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     
 st.markdown("##")  ## 更大的间隔 
