@@ -236,7 +236,8 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
             # for rect, ratio in zip(rects, df['比例']):
             #     ax.text(rect.get_x() + rect.get_width() / 2.0, rect.get_height(), f'{ratio:.1%}', ha='center', va='bottom',fontsize=annotation_fontsize)
         ### 添加图例
-        ax.legend(fontsize=legend_fontsize)
+        ax.legend()
+        # ax.legend(fontsize=legend_fontsize)
 
         # ### 添加x轴标签
         # ## 计算每个组的中心位置作为x轴刻度位置
@@ -252,13 +253,16 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         
         ### 设置y轴刻度标签
         ax.set_yticks(r + bar_width*(len(dataframes) / 2))  # 调整位置以使标签居中对齐到每个条形
-        ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=yticklabel_fontsize)
+        ax.set_yticklabels(dataframes[0]['項目'].values)
+        # ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=yticklabel_fontsize)
 
 
         ### 设置标题和轴标签
         ax.set_title(item_name,fontsize=title_fontsize)
+        # ax.set_title(item_name,fontsize=title_fontsize)
         # ax.set_xlabel('满意度',fontsize=xlabel_fontsize)
-        ax.set_xlabel('比例',fontsize=xlabel_fontsize)
+        ax.set_xlabel('比例')
+        # ax.set_xlabel('比例',fontsize=xlabel_fontsize)
         ### 显示网格线
         plt.grid(True, linestyle='--', linewidth=0.5, color='gray')
         plt.tight_layout()
@@ -281,14 +285,19 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         plt.barh(result_df['項目'], result_df['人數'], label=choice)
         #### 標示比例數據
         for i in range(len(result_df['項目'])):
-            plt.text(result_df['人數'][i]+1, result_df['項目'][i], f'{result_df.iloc[:, 2][i]:.1%}', fontsize=annotation_fontsize)
+            plt.text(result_df['人數'][i]+1, result_df['項目'][i], f'{result_df.iloc[:, 2][i]:.1%}')
+            # plt.text(result_df['人數'][i]+1, result_df['項目'][i], f'{result_df.iloc[:, 2][i]:.1%}', fontsize=annotation_fontsize)
         #### 添加一些图形元素
-        plt.title(item_name, fontsize=title_fontsize)
-        plt.xlabel('人數', fontsize=xlabel_fontsize)
+        plt.title(item_name)
+        # plt.title(item_name, fontsize=title_fontsize)
+        plt.xlabel('人數')
+        # plt.xlabel('人數', fontsize=xlabel_fontsize)
         #plt.ylabel('本校現在所提供的資源或支援事項')
         #### 调整x轴和y轴刻度标签的字体大小
-        plt.tick_params(axis='both', labelsize=14)  # 同时调整x轴和y轴
-        plt.legend(fontsize=14)
+        plt.tick_params(axis='both')  # 同时调整x轴和y轴
+        # plt.tick_params(axis='both', labelsize=xticklabel_fontsize)  # 同时调整x轴和y轴
+        plt.legend()
+        # plt.legend(fontsize=legend_fontsize)
         #### 显示网格线
         plt.grid(True, linestyle='--', linewidth=0.5, color='gray')
         #### 显示图形
@@ -354,7 +363,8 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         # for rect, ratio in zip(rects, df['比例']):
         #     ax.text(rect.get_x() + rect.get_width() / 2.0, rect.get_height(), f'{ratio:.1%}', ha='center', va='bottom',fontsize=annotation_fontsize)
     ### 添加图例
-    ax.legend(fontsize=legend_fontsize)
+    ax.legend()
+    # ax.legend(fontsize=legend_fontsize)
 
     # ### 添加x轴标签
     # ## 计算每个组的中心位置作为x轴刻度位置
@@ -370,13 +380,16 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
 
     ### 设置y轴刻度标签
     ax.set_yticks(r + bar_width*(len(dataframes) / 2))  # 调整位置以使标签居中对齐到每个条形
-    ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=yticklabel_fontsize)
+    ax.set_yticklabels(dataframes[0]['項目'].values)
+    # ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=yticklabel_fontsize)
 
 
     ### 设置标题和轴标签
-    ax.set_title(item_name,fontsize=title_fontsize)
+    ax.set_title(item_name)
+    # ax.set_title(item_name,fontsize=title_fontsize)
     # ax.set_xlabel('满意度',fontsize=xlabel_fontsize)
-    ax.set_xlabel('比例',fontsize=xlabel_fontsize)
+    ax.set_xlabel('比例')
+    # ax.set_xlabel('比例',fontsize=xlabel_fontsize)
     ### 显示网格线
     plt.grid(True, linestyle='--', linewidth=0.5, color='gray')
     plt.tight_layout()
