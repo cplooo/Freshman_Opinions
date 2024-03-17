@@ -82,7 +82,7 @@ def adjust_df(df, order):
 
 ###### 畫圖形(單一學系或學院, 比較圖形)
 @st.cache_data(ttl=3600, show_spinner="正在處理資料...")  ## Add the caching decorator
-def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1):
+def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, selected_options):
     ##### 使用Streamlit畫單一圖
     if 院_系 == '0':
         collections = [df_freshman, df_freshman_faculty, df_freshman_original]
@@ -197,8 +197,6 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
     ##### 使用streamlit 畫比較圖
     # st.subheader("不同單位比較")
     if 院_系 == '0':
-        ## 使用multiselect组件让用户进行多重选择
-        selected_options = st.multiselect('選擇比較學系：', df_freshman_original['科系'].unique(), default=[choice,'企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
         collections = [df_freshman_original[df_freshman_original['科系']==i] for i in selected_options]
         dataframes = [Frequency_Distribution(df, column_index, split_symbol, dropped_string, sum_choice) for df in collections]
         ## 形成所有學系'項目'欄位的所有值
@@ -207,8 +205,6 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         dataframes = [adjust_df(df, desired_order) for df in dataframes]
         combined_df = pd.concat(dataframes, keys=selected_options)
     elif 院_系 == '1':
-        ## 使用multiselect组件让用户进行多重选择
-        selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
         collections = [df_freshman_original[df_freshman_original['學院']==i] for i in selected_options]
         dataframes = [Frequency_Distribution(df, column_index, split_symbol, dropped_string, sum_choice) for df in collections]
         ## 形成所有學系'項目'欄位的所有值
@@ -489,7 +485,15 @@ with st.expander("學習及生活費（書籍、住宿、交通、伙食等開�
 
 
     ##### 使用Streamlit畫單一圖 & 比較圖
-    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1)
+    #### 畫比較圖時, 比較單位選擇:
+    if 院_系 == '0':
+        ## 使用multiselect组件让用户进行多重选择
+        selected_options = st.multiselect('選擇比較學系：', df_freshman_original['科系'].unique(), default=[choice,'企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
+    if 院_系 == '1':
+        ## 使用multiselect组件让用户进行多重选择
+        selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
+
+    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, selected_options)
     
     # # st.markdown(f"圖形中項目(由下至上): {result_df['項目'].values.tolist()}")
     # if 院_系 == '0':
