@@ -255,7 +255,11 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         
         ### 设置y轴刻度标签
         ax.set_yticks(r + bar_width*(len(dataframes) / 2))  # 调整位置以使标签居中对齐到每个条形
-        ax.set_yticklabels(dataframes[0]['項目'].values)
+        if fontsize_adjust==0:
+            ax.set_yticklabels(dataframes[0]['項目'].values)
+        if fontsize_adjust==1:
+            ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=yticklabel_fontsize)
+        # ax.set_yticklabels(dataframes[0]['項目'].values)
         # ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=yticklabel_fontsize)
 
 
