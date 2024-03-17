@@ -253,14 +253,15 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         # ax.set_xticklabels(dataframes[0]['項目'].values, fontsize=xticklabel_fontsize)
         # # ax.set_xticklabels(['非常滿意', '滿意', '普通', '不滿意','非常不滿意'],fontsize=xticklabel_fontsize)
         
-        ### 设置y轴刻度标签
+        ### 设置x,y轴刻度标签
         ax.set_yticks(r + bar_width*(len(dataframes) / 2))  # 调整位置以使标签居中对齐到每个条形
         if fontsize_adjust==0:
             ax.set_yticklabels(dataframes[0]['項目'].values)
-            ax.set_xticklabels(dataframes[0]['比例'].values)
+            ax.tick_params(axis='x')
         if fontsize_adjust==1:
             ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=yticklabel_fontsize)
-            ax.set_xticklabels(dataframes[0]['比例'].values, fontsize=xticklabel_fontsize)
+            ## 设置x轴刻度的字体大小
+            ax.tick_params(axis='x', labelsize=xticklabel_fontsize)
         # ax.set_yticklabels(dataframes[0]['項目'].values)
         # ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=yticklabel_fontsize)
 
@@ -315,9 +316,17 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         #plt.ylabel('本校現在所提供的資源或支援事項')
         #### 调整x轴和y轴刻度标签的字体大小
         if fontsize_adjust==0:
-            plt.tick_params(axis='both')
+            # plt.tick_params(axis='both')
+            ## 设置x轴刻度的字体大小
+            ax.tick_params(axis='x')
+            ## 设置y轴刻度的字体大小
+            ax.tick_params(axis='y')
         if fontsize_adjust==1:
-            plt.tick_params(axis='both', labelsize=xticklabel_fontsize)  # 同时调整x轴和y轴 
+            # plt.tick_params(axis='both', labelsize=xticklabel_fontsize)  # 同时调整x轴和y轴 
+            ## 设置x轴刻度的字体大小
+            ax.tick_params(axis='x', labelsize=xticklabel_fontsize)
+            ## 设置y轴刻度的字体大小
+            ax.tick_params(axis='y', labelsize=yticklabel_fontsize)
         
         if fontsize_adjust==0:
             plt.legend()
@@ -407,14 +416,16 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
     # ax.set_xticklabels(dataframes[0]['項目'].values, fontsize=xticklabel_fontsize)
     # # ax.set_xticklabels(['非常滿意', '滿意', '普通', '不滿意','非常不滿意'],fontsize=xticklabel_fontsize)
 
-    ### 设置y轴刻度标签
+    ### 设置x,y轴刻度标签
     ax.set_yticks(r + bar_width*(len(dataframes) / 2))  # 调整位置以使标签居中对齐到每个条形
     if fontsize_adjust==0:
         ax.set_yticklabels(dataframes[0]['項目'].values)
-        ax.set_xticklabels(dataframes[0]['比例'].values)
+        ax.tick_params(axis='x')
     if fontsize_adjust==1:
         ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=yticklabel_fontsize)
-        ax.set_xticklabels(dataframes[0]['比例'].values, fontsize=xticklabel_fontsize)
+        ## 设置x轴刻度的字体大小
+        ax.tick_params(axis='x', labelsize=xticklabel_fontsize)
+        
     
 
 
