@@ -96,7 +96,7 @@ replace_rules = {
     '外語': '外語學院'
 }
 ##### 应用替换规则
-df_senior_original['學院'] = df_senior_original['學院'].replace(replace_rules)
+df_freshman_original['學院'] = df_freshman_original['學院'].replace(replace_rules)
 
 
 ####### 預先設定
