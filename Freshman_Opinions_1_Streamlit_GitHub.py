@@ -539,6 +539,8 @@ with st.expander("Q1. 性別:"):
     df_streamlit.append(result_df)  
 
     ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    # st.write(choice)
+    st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
     st.write(result_df.to_html(index=False), unsafe_allow_html=True)
     st.markdown("##")  ## 更大的间隔
 
@@ -575,6 +577,8 @@ with st.expander("Q2. 身分別:"):
     df_streamlit.append(result_df)  
 
     ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    # st.write(choice)
+    st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
     st.write(result_df.to_html(index=False), unsafe_allow_html=True)
     st.markdown("##")  ## 更大的间隔
 
@@ -611,6 +615,8 @@ with st.expander("Q3. 經濟不利背景（可複選）:"):
     df_streamlit.append(result_df)  
 
     ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    # st.write(choice)
+    st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
     st.write(result_df.to_html(index=False), unsafe_allow_html=True)
     st.markdown("##")  ## 更大的间隔
 
@@ -647,6 +653,8 @@ with st.expander("Q4. 文化不利背景（可複選）:"):
     df_streamlit.append(result_df)  
 
     ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    # st.write(choice)
+    st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
     st.write(result_df.to_html(index=False), unsafe_allow_html=True)
     st.markdown("##")  ## 更大的间隔
 
@@ -683,6 +691,8 @@ with st.expander("Q5. 原畢業學校之類型:"):
     df_streamlit.append(result_df)  
 
     ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    # st.write(choice)
+    st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
     st.write(result_df.to_html(index=False), unsafe_allow_html=True)
     st.markdown("##")  ## 更大的间隔
 
@@ -759,6 +769,8 @@ with st.expander("Q7. 大學「學費」主要來源(多選):"):
     df_streamlit.append(result_df)  
 
     ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    # st.write(choice)
+    st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
     st.write(result_df.to_html(index=False), unsafe_allow_html=True)
     st.markdown("##")  ## 更大的间隔
 
@@ -794,6 +806,8 @@ with st.expander("Q8. 學習及生活費（書籍、住宿、交通、伙食等�
     df_streamlit.append(result_df)  
 
     ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    # st.write(choice)
+    st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
     st.write(result_df.to_html(index=False), unsafe_allow_html=True)
     st.markdown("##")  ## 更大的间隔
 
@@ -829,6 +843,8 @@ with st.expander("Q9. 我的入學管道:"):
     df_streamlit.append(result_df)  
 
     ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    # st.write(choice)
+    st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
     st.write(result_df.to_html(index=False), unsafe_allow_html=True)
     st.markdown("##")  ## 更大的间隔
 
@@ -865,6 +881,8 @@ with st.expander("Q10. 得知本校最主要的管道(多選題):"):
     df_streamlit.append(result_df)  
 
     ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    # st.write(choice)
+    st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
     st.write(result_df.to_html(index=False), unsafe_allow_html=True)
     st.markdown("##")  ## 更大的间隔
 
