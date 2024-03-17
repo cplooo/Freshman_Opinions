@@ -277,7 +277,8 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         #### 绘制条形图
         ### 反轉 dataframe result_df 的所有行的值的次序,  使得表與圖的項目次序一致
         result_df = result_df.iloc[::-1].reset_index(drop=True)
-        plt.barh(result_df['項目'], result_df['人數'], label=choice, width=bar_width)
+        # plt.barh(result_df['項目'], result_df['人數'], label=choice, width=bar_width)
+        plt.barh(result_df['項目'], result_df['人數'], label=choice)
         #### 標示比例數據
         for i in range(len(result_df['項目'])):
             plt.text(result_df['人數'][i]+1, result_df['項目'][i], f'{result_df.iloc[:, 2][i]:.1%}', fontsize=14)
