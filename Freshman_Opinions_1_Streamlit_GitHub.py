@@ -82,7 +82,7 @@ def adjust_df(df, order):
 
 ###### 畫圖形(單一學系或學院, 比較圖形)
 @st.cache_data(ttl=3600, show_spinner="正在處理資料...")  ## Add the caching decorator
-def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, selected_options=[]):
+def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=pd.DataFrame(), selected_options=[]):
     ##### 使用Streamlit畫單一圖
     if 院_系 == '0':
         collections = [df_freshman, df_freshman_faculty, df_freshman_original]
@@ -496,7 +496,7 @@ with st.expander("學習及生活費（書籍、住宿、交通、伙食等開�
         ## 使用multiselect组件让用户进行多重选择
         selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
 
-    Draw(院_系, column_index, ';', '沒有工讀', 1, selected_options)
+    Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options)
     
     # # st.markdown(f"圖形中項目(由下至上): {result_df['項目'].values.tolist()}")
     # if 院_系 == '0':
