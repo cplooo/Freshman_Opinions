@@ -162,7 +162,7 @@ dataframes = [adjust_df(df, desired_order) for df in dataframes]
 # 5         學習應對與表達能力
 # Name: 項目, dtype: object
 # '''
-
+global combined_df
 combined_df = pd.concat(dataframes, keys=selected_options)
 # combined_df = pd.concat(dataframes, keys=[choice,choice_faculty,'全校'])
 # ''' 
