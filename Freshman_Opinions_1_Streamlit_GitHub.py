@@ -110,7 +110,6 @@ df_freshman_original['學院'] = df_freshman_original['學院'].replace(replace_
 ####### 預先設定
 global 院_系, choice, df_freshman, choice_faculty, df_freshman_faculty, selected_options, collections, column_index, dataframes, desired_order, combined_df
 ###### 預設定院或系之選擇
-# global 院_系 
 院_系 = '0'
 ###### 預設定 df_freshman 以防止在等待選擇院系輸入時, 發生後面程式df_freshman讀不到資料而產生錯誤
 choice='財金系' ##'化科系'
@@ -183,7 +182,7 @@ combined_df = pd.concat(dataframes, keys=selected_options)
 # '''
 
 
-####### 定義相關函數 (Part 2): 因為函數 'Draw' 的定義需要使用 'combined_df' 來計算 'unique_level0',  因此要放在以上 '預先設定' 之後才會有 'combined_df' 的值
+####### 定義相關函數 (Part 2): 因為函數 'Draw' 的定義需要使用 'dataframes','combined_df' 來進行相關計算, 因此要放在以上 '預先設定' 之後才會有 'dataframes', 'combined_df' 的值
 ###### 畫圖形(單一學系或學院, 比較圖形)
 @st.cache_data(ttl=3600, show_spinner="正在處理資料...")  ## Add the caching decorator
 def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=pd.DataFrame(), selected_options=[], dataframes=dataframes, combined_df=combined_df):
@@ -526,7 +525,41 @@ with st.expander("Q8. 學習及生活費（書籍、住宿、交通、伙食等�
     Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     
-st.markdown("##")  ## 更大的间隔  
+st.markdown("##")  ## 更大的间隔 
+
+
+
+
+####### Q9 我的入學管道 (水平長條圖)
+with st.expander("Q9. 我的入學管道:"):
+    # df_freshman.iloc[:,9] ## 9我的入學管道
+    column_index = 9
+    item_name = "我的入學管道"
+    column_title.append(df_freshman.columns[column_index][1:])
+
+    ##### 產出 result_df
+    result_df = Frequency_Distribution(df_freshman, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1)
+
+    ##### 存到 list 'df_streamlit'
+    df_streamlit.append(result_df)  
+
+    ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    st.write(result_df.to_html(index=False), unsafe_allow_html=True)
+    st.markdown("##")  ## 更大的间隔
+
+    ##### 使用Streamlit畫單一圖 & 比較圖
+    #### 畫比較圖時, 比較單位之選擇:
+    if 院_系 == '0':
+        ## 使用multiselect组件让用户进行多重选择
+        selected_options = st.multiselect('選擇比較學系：', df_freshman_original['科系'].unique(), default=[choice,'企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
+    if 院_系 == '1':
+        ## 使用multiselect组件让用户进行多重选择
+        selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
+
+    Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
+    # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
+    
+st.markdown("##")  ## 更大的间隔   
 
 
 
