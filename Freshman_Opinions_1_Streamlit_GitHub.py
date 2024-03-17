@@ -719,6 +719,7 @@ with st.expander("Q6. 原畢業學校所在地區:"):
     df_streamlit.append(result_df)  
 
     ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    st.write(choice)
     st.write(result_df.to_html(index=False), unsafe_allow_html=True)
     st.markdown("##")  ## 更大的间隔
 
