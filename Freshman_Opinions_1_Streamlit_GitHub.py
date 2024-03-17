@@ -108,8 +108,9 @@ df_freshman_original['學院'] = df_freshman_original['學院'].replace(replace_
 
 
 ####### 預先設定
+global 院_系, choice, df_freshman, choice_faculty, df_freshman_faculty, selected_options, collections, column_index, dataframes, desired_order, combined_df
 ###### 預設定院或系之選擇
-global 院_系 
+# global 院_系 
 院_系 = '0'
 ###### 預設定 df_freshman 以防止在等待選擇院系輸入時, 發生後面程式df_freshman讀不到資料而產生錯誤
 choice='財金系' ##'化科系'
@@ -162,7 +163,7 @@ dataframes = [adjust_df(df, desired_order) for df in dataframes]
 # 5         學習應對與表達能力
 # Name: 項目, dtype: object
 # '''
-global combined_df
+# global combined_df
 combined_df = pd.concat(dataframes, keys=selected_options)
 # combined_df = pd.concat(dataframes, keys=[choice,choice_faculty,'全校'])
 # ''' 
