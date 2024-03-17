@@ -185,7 +185,7 @@ combined_df = pd.concat(dataframes, keys=selected_options)
 ####### 定義相關函數 (Part 2): 因為函數 'Draw' 的定義需要使用 'combined_df' 來計算 'unique_level0',  因此要放在以上 '預先設定' 之後才會有 'combined_df' 的值
 ###### 畫圖形(單一學系或學院, 比較圖形)
 @st.cache_data(ttl=3600, show_spinner="正在處理資料...")  ## Add the caching decorator
-def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=pd.DataFrame(), selected_options=[], combined_df):
+def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=pd.DataFrame(), selected_options=[], combined_df=combined_df):
     ##### 使用Streamlit畫單一圖
     if 院_系 == '0':
         collections = [df_freshman, df_freshman_faculty, df_freshman_original]
