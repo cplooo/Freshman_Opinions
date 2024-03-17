@@ -318,15 +318,15 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         if fontsize_adjust==0:
             # plt.tick_params(axis='both')
             ## 设置x轴刻度的字体大小
-            ax.tick_params(axis='x')
+            plt.tick_params(axis='x')
             ## 设置y轴刻度的字体大小
-            ax.tick_params(axis='y')
+            plt.tick_params(axis='y')
         if fontsize_adjust==1:
             # plt.tick_params(axis='both', labelsize=xticklabel_fontsize)  # 同时调整x轴和y轴 
             ## 设置x轴刻度的字体大小
-            ax.tick_params(axis='x', labelsize=xticklabel_fontsize)
+            plt.tick_params(axis='x', labelsize=xticklabel_fontsize)
             ## 设置y轴刻度的字体大小
-            ax.tick_params(axis='y', labelsize=yticklabel_fontsize)
+            plt.tick_params(axis='y', labelsize=yticklabel_fontsize)
         
         if fontsize_adjust==0:
             plt.legend()
