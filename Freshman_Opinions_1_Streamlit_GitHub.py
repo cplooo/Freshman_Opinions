@@ -19,7 +19,7 @@ import streamlit.components.v1 as stc
 
 
 
-####### 定義相關函數
+####### 定義相關函數 (Part 1)
 ###### 載入資料
 @st.cache_data(ttl=3600, show_spinner="正在加載資料...")  ## Add the caching decorator
 def load_data(path):
@@ -80,6 +80,109 @@ def adjust_df(df, order):
     return df
 
 
+
+
+
+
+
+
+
+
+
+#######  读取Pickle文件
+df_freshman_original = load_data('df_freshman_original.pkl')
+###### 使用rename方法更改column名称: '學系' -> '科系'
+df_freshman_original = df_freshman_original.rename(columns={'學系': '科系'})
+###### 更改院的名稱: 理學->理學院, 資訊->資訊學院, 管理->管理學院, 人社->人文暨社會科學院, 國際->國際學院, 外語->外語學院
+##### 定义替换规则
+replace_rules = {
+    '理學': '理學院',
+    '資訊': '資訊學院',
+    '管理': '管理學院',
+    '人社': '人文暨社會科學院',
+    '國際': '國際學院',
+    '外語': '外語學院'
+}
+##### 应用替换规则
+df_freshman_original['學院'] = df_freshman_original['學院'].replace(replace_rules)
+
+
+####### 預先設定
+###### 預設定院或系之選擇
+global 院_系 
+院_系 = '0'
+###### 預設定 df_freshman 以防止在等待選擇院系輸入時, 發生後面程式df_freshman讀不到資料而產生錯誤
+choice='財金系' ##'化科系'
+df_freshman = df_freshman_original[df_freshman_original['科系']==choice]
+# choice_faculty = df_freshman['學院'][0]  ## 選擇學系所屬學院: '理學院'
+choice_faculty = df_freshman['學院'].values[0]  ## 選擇學系所屬學院: '理學院'
+df_freshman_faculty = df_freshman_original[df_freshman_original['學院']==choice_faculty]  ## 挑出全校所屬學院之資料
+# df_freshman_faculty['學院']  
+
+###### 預設定 selected_options, collections
+selected_options = ['化科系','企管系']
+# collections = [df_freshman_original[df_freshman_original['學院']==i] for i in selected_options]
+collections = [df_freshman_original[df_freshman_original['科系']==i] for i in selected_options]
+# collections = [df_freshman, df_freshman_faculty, df_freshman_original]
+# len(collections) ## 2
+# type(collections[0])   ## pandas.core.frame.DataFrame
+column_index = 7
+dataframes = [Frequency_Distribution(df, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1) for df in collections]  ## 22: "您工讀次要的原因為何:"
+# len(dataframes)  ## 2
+# len(dataframes[1]) ## 6,5
+# len(dataframes[0]) ## 5,5
+# len(dataframes[2]) ##   23
+
+##### 形成所有學系'項目'欄位的所有值
+desired_order  = list(set([item for df in dataframes for item in df['項目'].tolist()])) 
+# desired_order  = list(set([item for item in dataframes[0]['項目'].tolist()])) 
+
+##### 缺的項目值加以擴充， 並統一一樣的項目次序
+dataframes = [adjust_df(df, desired_order) for df in dataframes]
+# len(dataframes)  ## 2
+# len(dataframes[1]) ## 6
+# len(dataframes[0]) ## 6, 從原本的5變成6 
+# dataframes[0]['項目']
+# '''
+# 0              體驗生活
+# 1         為未來工作累積經驗
+# 2             負擔生活費
+# 3              增加人脈
+# 4    不須負擔生活費但想增加零用錢
+# 5         學習應對與表達能力
+# Name: 項目, dtype: object
+# '''
+# dataframes[1]['項目']
+# '''
+# 0              體驗生活
+# 1         為未來工作累積經驗
+# 2             負擔生活費
+# 3              增加人脈
+# 4    不須負擔生活費但想增加零用錢
+# 5         學習應對與表達能力
+# Name: 項目, dtype: object
+# '''
+
+combined_df = pd.concat(dataframes, keys=selected_options)
+# combined_df = pd.concat(dataframes, keys=[choice,choice_faculty,'全校'])
+# ''' 
+#                    項目  人數      比例
+# 化科系 0            體驗生活   0  0.0000
+#     1       為未來工作累積經驗  13  0.3824
+#     2           負擔生活費   2  0.0588
+#     3            增加人脈   2  0.0588
+#     4  不須負擔生活費但想增加零用錢   7  0.2059
+#     5       學習應對與表達能力  10  0.2941
+# 企管系 0            體驗生活   1  0.0417
+#     1       為未來工作累積經驗   9  0.3750
+#     2           負擔生活費   4  0.1667
+#     3            增加人脈   2  0.0833
+#     4  不須負擔生活費但想增加零用錢   2  0.0833
+#     5       學習應對與表達能力   6  0.2500
+# '''
+
+
+####### 定義相關函數 (Part 2): 因為函數 'Draw' 的定義需要使用 'combined_df' 來計算 'unique_level0',  因此要放在以上 '預先設定' 之後才會有 'combined_df' 的值
 ###### 畫圖形(單一學系或學院, 比較圖形)
 @st.cache_data(ttl=3600, show_spinner="正在處理資料...")  ## Add the caching decorator
 def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=pd.DataFrame(), selected_options=[]):
@@ -285,100 +388,6 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
 
 
 
-
-
-
-#######  读取Pickle文件
-df_freshman_original = load_data('df_freshman_original.pkl')
-###### 使用rename方法更改column名称: '學系' -> '科系'
-df_freshman_original = df_freshman_original.rename(columns={'學系': '科系'})
-###### 更改院的名稱: 理學->理學院, 資訊->資訊學院, 管理->管理學院, 人社->人文暨社會科學院, 國際->國際學院, 外語->外語學院
-##### 定义替换规则
-replace_rules = {
-    '理學': '理學院',
-    '資訊': '資訊學院',
-    '管理': '管理學院',
-    '人社': '人文暨社會科學院',
-    '國際': '國際學院',
-    '外語': '外語學院'
-}
-##### 应用替换规则
-df_freshman_original['學院'] = df_freshman_original['學院'].replace(replace_rules)
-
-
-####### 預先設定
-###### 預設定院或系之選擇
-global 院_系 
-院_系 = '0'
-###### 預設定 df_freshman 以防止在等待選擇院系輸入時, 發生後面程式df_freshman讀不到資料而產生錯誤
-choice='財金系' ##'化科系'
-df_freshman = df_freshman_original[df_freshman_original['科系']==choice]
-# choice_faculty = df_freshman['學院'][0]  ## 選擇學系所屬學院: '理學院'
-choice_faculty = df_freshman['學院'].values[0]  ## 選擇學系所屬學院: '理學院'
-df_freshman_faculty = df_freshman_original[df_freshman_original['學院']==choice_faculty]  ## 挑出全校所屬學院之資料
-# df_freshman_faculty['學院']  
-
-###### 預設定 selected_options, collections
-selected_options = ['化科系','企管系']
-# collections = [df_freshman_original[df_freshman_original['學院']==i] for i in selected_options]
-collections = [df_freshman_original[df_freshman_original['科系']==i] for i in selected_options]
-# collections = [df_freshman, df_freshman_faculty, df_freshman_original]
-# len(collections) ## 2
-# type(collections[0])   ## pandas.core.frame.DataFrame
-column_index = 7
-dataframes = [Frequency_Distribution(df, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1) for df in collections]  ## 22: "您工讀次要的原因為何:"
-# len(dataframes)  ## 2
-# len(dataframes[1]) ## 6,5
-# len(dataframes[0]) ## 5,5
-# len(dataframes[2]) ##   23
-
-##### 形成所有學系'項目'欄位的所有值
-desired_order  = list(set([item for df in dataframes for item in df['項目'].tolist()])) 
-# desired_order  = list(set([item for item in dataframes[0]['項目'].tolist()])) 
-
-##### 缺的項目值加以擴充， 並統一一樣的項目次序
-dataframes = [adjust_df(df, desired_order) for df in dataframes]
-# len(dataframes)  ## 2
-# len(dataframes[1]) ## 6
-# len(dataframes[0]) ## 6, 從原本的5變成6 
-# dataframes[0]['項目']
-# '''
-# 0              體驗生活
-# 1         為未來工作累積經驗
-# 2             負擔生活費
-# 3              增加人脈
-# 4    不須負擔生活費但想增加零用錢
-# 5         學習應對與表達能力
-# Name: 項目, dtype: object
-# '''
-# dataframes[1]['項目']
-# '''
-# 0              體驗生活
-# 1         為未來工作累積經驗
-# 2             負擔生活費
-# 3              增加人脈
-# 4    不須負擔生活費但想增加零用錢
-# 5         學習應對與表達能力
-# Name: 項目, dtype: object
-# '''
-
-combined_df = pd.concat(dataframes, keys=selected_options)
-# combined_df = pd.concat(dataframes, keys=[choice,choice_faculty,'全校'])
-# ''' 
-#                    項目  人數      比例
-# 化科系 0            體驗生活   0  0.0000
-#     1       為未來工作累積經驗  13  0.3824
-#     2           負擔生活費   2  0.0588
-#     3            增加人脈   2  0.0588
-#     4  不須負擔生活費但想增加零用錢   7  0.2059
-#     5       學習應對與表達能力  10  0.2941
-# 企管系 0            體驗生活   1  0.0417
-#     1       為未來工作累積經驗   9  0.3750
-#     2           負擔生活費   4  0.1667
-#     3            增加人脈   2  0.0833
-#     4  不須負擔生活費但想增加零用錢   2  0.0833
-#     5       學習應對與表達能力   6  0.2500
-# '''
 
 
 
