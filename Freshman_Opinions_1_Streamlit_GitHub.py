@@ -230,26 +230,31 @@ column_title = []
 
 
 ####### 問卷的各項問題
-###### Q8 學習及生活費（書籍、住宿、交通、伙食等開銷）主要來源
+###### Q8 學習及生活費（書籍、住宿、交通、伙食等開銷）主要來源（可複選）
 with st.expander("學習及生活費（書籍、住宿、交通、伙食等開銷）主要來源(多選):"):
-    # df_freshman.iloc[:,8] ## 8學習及生活費（書籍、住宿、交通、伙食等開銷）主要來源（可複選
+    # df_freshman.iloc[:,8] ## 8學習及生活費（書籍、住宿、交通、伙食等開銷）主要來源（可複選)
     column_index = 8
-    item_name = "學習及生活費（書籍、住宿、交通、伙食等開銷）主要來源"
-    column_title.append(df_freshman.columns[column_index][2:])
+    item_name = "學習及生活費（書籍、住宿、交通、伙食等開銷）主要來源(多選)"
+    column_title.append(df_freshman.columns[column_index][1:])
 
-    ##### 将字符串按逗号分割并展平
-    split_values = df_freshman.iloc[:,column_index].str.split(';').explode()
-    ##### 计算不同子字符串的出现次数
-    value_counts = split_values.value_counts()
-    ##### 计算不同子字符串的比例
-    proportions = value_counts/value_counts.sum()
-    # proportions = value_counts/df_freshman.shape[0]   ## 
-    ##### 轉換成 numpy array
-    value_counts_numpy = value_counts.values
-    proportions_numpy = proportions.values
-    items_numpy = proportions.index.to_numpy()
-    ##### 创建一个新的DataFrame来显示结果
-    result_df = pd.DataFrame({'項目':items_numpy, '人數': value_counts_numpy,'比例': proportions_numpy.round(4)})
+
+    ##### 產出 result_df
+    result_df = Frequency_Distribution(df_freshman, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1)
+
+    # ##### 将字符串按逗号分割并展平
+    # split_values = df_freshman.iloc[:,column_index].str.split(';').explode()
+    # ##### 计算不同子字符串的出现次数
+    # value_counts = split_values.value_counts()
+    # ##### 计算不同子字符串的比例
+    # proportions = value_counts/value_counts.sum()
+    # # proportions = value_counts/df_freshman.shape[0]   ## 
+    # ##### 轉換成 numpy array
+    # value_counts_numpy = value_counts.values
+    # proportions_numpy = proportions.values
+    # items_numpy = proportions.index.to_numpy()
+    # ##### 创建一个新的DataFrame来显示结果
+    # result_df = pd.DataFrame({'項目':items_numpy, '人數': value_counts_numpy,'比例': proportions_numpy.round(4)})
+
     ##### 存到 list 'df_streamlit'
     df_streamlit.append(result_df)  
 
