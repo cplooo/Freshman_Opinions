@@ -185,7 +185,7 @@ combined_df = pd.concat(dataframes, keys=selected_options)
 ####### 定義相關函數 (Part 2): 因為函數 'Draw' 的定義需要使用 'dataframes','combined_df' 來進行相關計算, 因此要放在以上 '預先設定' 之後才會有 'dataframes', 'combined_df' 的值
 ###### 畫圖形(單一學系或學院, 比較圖形)
 @st.cache_data(ttl=3600, show_spinner="正在處理資料...")  ## Add the caching decorator
-def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=pd.DataFrame(), selected_options=[], dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,bar_width = 0.2):
+def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=pd.DataFrame(), selected_options=[], dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14, bar_width = 0.2):
     ##### 使用Streamlit畫單一圖
     if 院_系 == '0':
         collections = [df_freshman, df_freshman_faculty, df_freshman_original]
@@ -212,14 +212,14 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         # bar_width = 0.2
         #### 设置y轴的位置
         r = np.arange(len(dataframes[0]))  ## len(result_df_理學_rr)=6, 因為result_df_理學_rr 有 6個 row: 非常滿意, 滿意, 普通, 不滿意, 非常不滿意
-        #### 设置字体大小
-        title_fontsize = title_fontsize ##15
-        xlabel_fontsize = xlabel_fontsize  ##14
-        ylabel_fontsize = ylabel_fontsize  ##14
-        xticklabel_fontsize = 14
-        yticklabel_fontsize = 14
-        annotation_fontsize = 8
-        legend_fontsize = legend_fontsize  ##14
+        # #### 设置字体大小
+        # title_fontsize = title_fontsize ##15
+        # xlabel_fontsize = xlabel_fontsize  ##14
+        # ylabel_fontsize = ylabel_fontsize  ##14
+        # xticklabel_fontsize = 14
+        # yticklabel_fontsize = 14
+        # annotation_fontsize = 8
+        # legend_fontsize = legend_fontsize  ##14
         #### 绘制条形
         fig, ax = plt.subplots(figsize=(width1, heigh1))
         # for i, (college_name, df) in enumerate(combined_df.groupby(level=0)):
@@ -281,10 +281,10 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         plt.barh(result_df['項目'], result_df['人數'], label=choice)
         #### 標示比例數據
         for i in range(len(result_df['項目'])):
-            plt.text(result_df['人數'][i]+1, result_df['項目'][i], f'{result_df.iloc[:, 2][i]:.1%}', fontsize=14)
+            plt.text(result_df['人數'][i]+1, result_df['項目'][i], f'{result_df.iloc[:, 2][i]:.1%}', fontsize=annotation_fontsize)
         #### 添加一些图形元素
-        plt.title(item_name, fontsize=15)
-        plt.xlabel('人數', fontsize=14)
+        plt.title(item_name, fontsize=title_fontsize)
+        plt.xlabel('人數', fontsize=xlabel_fontsize)
         #plt.ylabel('本校現在所提供的資源或支援事項')
         #### 调整x轴和y轴刻度标签的字体大小
         plt.tick_params(axis='both', labelsize=14)  # 同时调整x轴和y轴
@@ -326,18 +326,18 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
     # matplotlib.rcParams['axes.unicode_minus'] = False  # 解決負號顯示問題
     matplotlib.rcParams['font.family'] = 'Noto Sans CJK JP'
     matplotlib.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
-    #### 设置条形的宽度
-    bar_width = 0.2
+    # #### 设置条形的宽度
+    # bar_width = 0.2
     #### 设置y轴的位置
     r = np.arange(len(dataframes[0]))  ## len(result_df_理學_rr)=6, 因為result_df_理學_rr 有 6個 row: 非常滿意, 滿意, 普通, 不滿意, 非常不滿意
-    #### 设置字体大小
-    title_fontsize = 15
-    xlabel_fontsize = 14
-    ylabel_fontsize = 14
-    xticklabel_fontsize = 14
-    yticklabel_fontsize = 14
-    annotation_fontsize = 8
-    legend_fontsize = 14
+    # #### 设置字体大小
+    # title_fontsize = 15
+    # xlabel_fontsize = 14
+    # ylabel_fontsize = 14
+    # xticklabel_fontsize = 14
+    # yticklabel_fontsize = 14
+    # annotation_fontsize = 8
+    # legend_fontsize = 14
     #### 绘制条形
     fig, ax = plt.subplots(figsize=(width3, heigh3))
     # for i, (college_name, df) in enumerate(combined_df.groupby(level=0)):
@@ -491,7 +491,7 @@ with st.expander("Q1. 性別:"):
 
     # Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
-    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,bar_width = 0.2)    
+    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14, bar_width = 0.2)    
     
 st.markdown("##")  ## 更大的间隔 
 
@@ -527,7 +527,7 @@ with st.expander("Q2. 身分別:"):
 
     # Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df, bar_width = 0.15)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
-    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,bar_width = 0.2)
+    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2)
     
 st.markdown("##")  ## 更大的间隔 
 
@@ -563,7 +563,7 @@ with st.expander("Q3. 經濟不利背景（可複選）:"):
 
     # Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df, bar_width = 0.15)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
-    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,bar_width = 0.2)
+    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2)
     
 st.markdown("##")  ## 更大的间隔 
 
@@ -599,7 +599,7 @@ with st.expander("Q4. 文化不利背景（可複選）:"):
 
     # Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df, bar_width = 0.15)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
-    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=20,width2=10,heigh2=20,width3=10,heigh3=20,title_fontsize=25,xlabel_fontsize = 24,ylabel_fontsize = 24,legend_fontsize = 24,bar_width = 0.2)
+    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=15,heigh1=20,width2=15,heigh2=20,width3=15,heigh3=20,title_fontsize=25,xlabel_fontsize = 24,ylabel_fontsize = 24,legend_fontsize = 24,xticklabel_fontsize = 20, yticklabel_fontsize = 20, annotation_fontsize = 24,bar_width = 0.2)
     
 st.markdown("##")  ## 更大的间隔 
 
@@ -637,7 +637,7 @@ with st.expander("Q7. 大學「學費」主要來源(多選):"):
 
     # Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
-    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,bar_width = 0.2)
+    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2)
     
 st.markdown("##")  ## 更大的间隔  
 
@@ -672,7 +672,7 @@ with st.expander("Q8. 學習及生活費（書籍、住宿、交通、伙食等�
 
     # Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
-    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,bar_width = 0.2)    
+    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2)    
 
 st.markdown("##")  ## 更大的间隔 
 
@@ -707,7 +707,7 @@ with st.expander("Q9. 我的入學管道:"):
 
     # Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df,width1=15,heigh1=9,width2=15,heigh2=9,width3=15,heigh3=9,title_fontsize=20,xlabel_fontsize = 19,ylabel_fontsize = 19,legend_fontsize = 19)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
-    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=15,heigh1=9,width2=15,heigh2=9,width3=15,heigh3=9,title_fontsize=20,xlabel_fontsize = 19,ylabel_fontsize = 19,legend_fontsize = 19,bar_width = 0.2)
+    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=15,heigh1=9,width2=15,heigh2=9,width3=15,heigh3=9,title_fontsize=20,xlabel_fontsize = 19,ylabel_fontsize = 19,legend_fontsize = 19,xticklabel_fontsize = 19, yticklabel_fontsize = 19, annotation_fontsize = 19,bar_width = 0.2)
     
 st.markdown("##")  ## 更大的间隔
 
@@ -743,7 +743,7 @@ with st.expander("Q10. 得知本校最主要的管道(多選題):"):
 
     # Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
-    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,bar_width = 0.2)
+    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2)
     
 st.markdown("##")  ## 更大的间隔    
 
