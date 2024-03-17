@@ -307,7 +307,8 @@ df_freshman_original['學院'] = df_freshman_original['學院'].replace(replace_
 
 
 ####### 預先設定
-###### 
+######
+global 院_系 
 院_系 == '0'
 ###### 預設定 df_freshman 以防止在等待選擇院系輸入時, 發生後面程式df_freshman讀不到資料而產生錯誤
 choice='財金系' ##'化科系'
@@ -406,7 +407,7 @@ st.markdown("""
 st.markdown("##")  ## 更大的间隔
 
 
-global 院_系
+# global 院_系
 ####### 選擇院系
 ###### 選擇 院 or 系:
 院_系 = st.text_input('以學系查詢請輸入 0, 以學院查詢請輸入 1  (說明: (i).以學系查詢時同時呈現學院及全校資料. (ii)可以選擇比較單位): ')
