@@ -185,7 +185,7 @@ combined_df = pd.concat(dataframes, keys=selected_options)
 ####### 定義相關函數 (Part 2): 因為函數 'Draw' 的定義需要使用 'dataframes','combined_df' 來進行相關計算, 因此要放在以上 '預先設定' 之後才會有 'dataframes', 'combined_df' 的值
 ###### 畫圖形(單一學系或學院, 比較圖形)
 @st.cache_data(ttl=3600, show_spinner="正在處理資料...")  ## Add the caching decorator
-def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=pd.DataFrame(), selected_options=[], dataframes=dataframes, combined_df=combined_df):
+def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=pd.DataFrame(), selected_options=[], dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6):
     ##### 使用Streamlit畫單一圖
     if 院_系 == '0':
         collections = [df_freshman, df_freshman_faculty, df_freshman_original]
@@ -221,7 +221,7 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         annotation_fontsize = 8
         legend_fontsize = 14
         #### 绘制条形
-        fig, ax = plt.subplots(figsize=(10, 6))
+        fig, ax = plt.subplots(figsize=(width1, heigh1))
         # for i, (college_name, df) in enumerate(combined_df.groupby(level=0)):
         for i, college_name in enumerate(unique_level0):            
             df = combined_df.loc[college_name]
@@ -273,7 +273,7 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         matplotlib.rcParams['font.family'] = 'Noto Sans CJK JP'
         matplotlib.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
         #### 创建图形和坐标轴
-        plt.figure(figsize=(11, 8))
+        plt.figure(figsize=(width2, heigh2))
         #### 绘制条形图
         ### 反轉 dataframe result_df 的所有行的值的次序,  使得表與圖的項目次序一致
         result_df = result_df.iloc[::-1].reset_index(drop=True)
@@ -338,7 +338,7 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
     annotation_fontsize = 8
     legend_fontsize = 14
     #### 绘制条形
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(width3, heigh3))
     # for i, (college_name, df) in enumerate(combined_df.groupby(level=0)):
     for i, college_name in enumerate(unique_level0):            
         df = combined_df.loc[college_name]
@@ -556,7 +556,7 @@ with st.expander("Q9. 我的入學管道:"):
         ## 使用multiselect组件让用户进行多重选择
         selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
 
-    Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
+    Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df,width3=15,heigh3=9)
     # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     
 st.markdown("##")  ## 更大的间隔   
