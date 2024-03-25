@@ -90,7 +90,9 @@ def adjust_df(df, order):
 
 
 #######  读取Pickle文件
-df_freshman_original = load_data('df_freshman_original.pkl')
+# df_freshman_original = load_data('df_freshman_original.pkl')
+df_freshman_original = load_data(r'C:\Users\user\Dropbox\系務\校務研究IR\大一新生學習適應調查分析\112\GitHub上傳\df_freshman_original.pkl')
+
 ###### 使用rename方法更改column名称: '學系' -> '科系'
 df_freshman_original = df_freshman_original.rename(columns={'學系': '科系'})
 ###### 更改院的名稱: 理學->理學院, 資訊->資訊學院, 管理->管理學院, 人社->人文暨社會科學院, 國際->國際學院, 外語->外語學院
@@ -3512,6 +3514,45 @@ with st.expander("Q22-26.滿意於清楚實用的打工、獎助學金資訊 (�
     column_index = 85
     item_name = "滿意於清楚實用的打工、獎助學金資訊 (範圍1～5；1為非常不滿意；5為非常滿意）"
     column_title.append(df_freshman.columns[column_index][5:])
+
+
+    #### 產出 result_df
+    result_df = Frequency_Distribution(df_freshman, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1)
+
+    #### 存到 list 'df_streamlit'
+    df_streamlit.append(result_df)  
+
+    #### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    # st.write(choice)
+    st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
+    st.write(result_df.to_html(index=False), unsafe_allow_html=True)
+    st.markdown("##")  ## 更大的间隔
+
+    #### 使用Streamlit畫單一圖 & 比較圖
+    ### 畫比較圖時, 比較單位之選擇:
+    if 院_系 == '0':
+        ## 使用multiselect组件让用户进行多重选择
+        selected_options = st.multiselect('選擇比較學系：', df_freshman_original['科系'].unique(), default=[choice,'企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
+    if 院_系 == '1':
+        ## 使用multiselect组件让用户进行多重选择
+        selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
+
+    # Draw(院_系, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
+    # Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
+    Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2, fontsize_adjust=0)
+    
+st.markdown("##")  ## 更大的间隔
+
+
+
+
+###### Q23. 入學至今，對於課程安排的認同程度（範圍1～5；1為非常不同意；5為非常同意）
+##### Q23-1 選課前，我可以在網站上清楚看到各課程大綱
+with st.expander("Q23.入學至今，對於課程安排的認同程度. Q23-1.選課前，我可以在網站上清楚看到各課程大綱（範圍 1～5；1為非常不同意；5為非常同意）:"):
+    # df_freshman.iloc[:,87] ## 23-1選課前，我可以在網站上清楚看到各課程大綱
+    column_index = 87
+    item_name = "選課前，我可以在網站上清楚看到各課程大綱（範圍 1～5；1為非常不同意；5為非常同意）"
+    column_title.append(df_freshman.columns[column_index][1:])
 
 
     #### 產出 result_df
