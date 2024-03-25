@@ -90,8 +90,8 @@ def adjust_df(df, order):
 
 
 #######  读取Pickle文件
-# df_freshman_original = load_data('df_freshman_original.pkl')
-df_freshman_original = load_data(r'C:\Users\user\Dropbox\系務\校務研究IR\大一新生學習適應調查分析\112\GitHub上傳\df_freshman_original.pkl')
+df_freshman_original = load_data('df_freshman_original.pkl')
+# df_freshman_original = load_data(r'C:\Users\user\Dropbox\系務\校務研究IR\大一新生學習適應調查分析\112\GitHub上傳\df_freshman_original.pkl')
 
 ###### 使用rename方法更改column名称: '學系' -> '科系'
 df_freshman_original = df_freshman_original.rename(columns={'學系': '科系'})
