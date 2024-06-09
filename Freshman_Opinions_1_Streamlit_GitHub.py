@@ -486,7 +486,7 @@ st.markdown("##")  ## 更大的间隔
 ###### 選擇 院 or 系:
 院_系 = st.text_input('以學系查詢請輸入 0, 以學院查詢請輸入 1  (說明: (i).以學系查詢時同時呈現學院及全校資料. (ii)可以選擇比較單位): ', value='0')
 if 院_系 == '0':
-    choice = st.selectbox('選擇學系', df_freshman_original['科系'].unique())
+    choice = st.selectbox('選擇學系', df_freshman_original['科系'].unique(), index=0)
     #choice = '化科系'
     df_freshman = df_freshman_original[df_freshman_original['科系']==choice]
     choice_faculty = df_freshman['學院'].values[0]  ## 選擇學系所屬學院
