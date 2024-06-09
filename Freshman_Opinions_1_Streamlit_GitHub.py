@@ -1209,10 +1209,19 @@ st.markdown("##")  ## 更大的间隔
 
 
 
-
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">對目前就讀科系的瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）</p>
+""", unsafe_allow_html=True)
 ###### Q19 對目前就讀科系的瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）
 ##### Q19-1 學習範圍與目標
-with st.expander("Q19 對目前就讀科系的瞭解程度. Q19-1. 學習範圍與目標瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）:"):
+# with st.expander("Q19 對目前就讀科系的瞭解程度. Q19-1. 學習範圍與目標瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）:"):
+with st.expander("Q19-1. 學習範圍與目標瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）:"):
     # df_freshman.iloc[:,20] ## 19-1學習範圍與目標
     column_index = 20
     item_name = "學習範圍與目標瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）"
@@ -1432,10 +1441,18 @@ with st.expander("Q19-6. 畢業條件相關規定瞭解程度（範圍1～5；1�
 st.markdown("##")  ## 更大的间隔
 
 
-
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">入學至今，我感覺目前就讀科系的總體課程狀況（範圍1～5；1為程度非常低；5為程度非常高).</p>
+""", unsafe_allow_html=True)
 ###### Q20 入學至今，我感覺目前就讀科系的總體課程狀況
 ##### Q20-1 課業挑戰性
-with st.expander("Q20.入學至今，我感覺目前就讀科系的總體課程狀況. Q20-1.課業挑戰性（範圍1～5；1為程度非常低；5為程度非常高）:"):
+with st.expander("Q20-1.課業挑戰性（範圍1～5；1為程度非常低；5為程度非常高）:"):
     # df_freshman.iloc[:,27] ## 20-1課業挑戰性
     column_index = 27
     item_name = "課業挑戰性（範圍1～5；1為程度非常低；5為程度非常高）"
