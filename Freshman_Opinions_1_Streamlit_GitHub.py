@@ -1635,10 +1635,18 @@ with st.expander("Q20-5. 整體滿意度（範圍1～5；1為程度非常低；5
 st.markdown("##")  ## 更大的间隔
 
 
-
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">我對於本校所提供資源或支援事項的「期待程度」（範圍1～5；1為程度非常低；5為程度非常高）.</p>
+""", unsafe_allow_html=True)
 ###### Q21 我對於本校所提供資源或支援事項的「期待程度」（範圍1～5；1為程度非常低；5為程度非常高）
 ##### Q21-1 期望彈性且有效率的學校行政
-with st.expander("Q21 我對於本校所提供資源或支援事項的「期待程度」. Q21-1. 期望彈性且有效率的學校行政（範圍1～5；1為程度非常低；5為程度非常高）:"):
+with st.expander("Q21-1. 期望彈性且有效率的學校行政（範圍1～5；1為程度非常低；5為程度非常高）:"):
     # df_freshman.iloc[:,33] ## 21-1期望彈性且有效率的學校行政
     column_index = 33
     item_name = "期望彈性且有效率的學校行政（範圍1～5；1為程度非常低；5為程度非常高）"
@@ -2598,10 +2606,18 @@ with st.expander("Q21-26. 期望清楚實用的打工、獎助學金資訊（範
 st.markdown("##")  ## 更大的间隔
 
 
-
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">入學至今，我對於「本校現在」所提供資源或支援的滿意程度（範圍1～5；1為非常不滿意；5為非常滿意）.</p>
+""", unsafe_allow_html=True)
 ###### Q22. 入學至今，我對於「本校現在」所提供資源或支援的滿意程度（範圍1～5；1為非常不滿意；5為非常滿意）
 ##### Q22-1 滿意於彈性且有效率的學校行政
-with st.expander("Q22.入學至今，我對於「本校現在」所提供資源或支援的滿意程度. Q22-1.滿意於彈性且有效率的學校行政 (範圍1～5；1為非常不滿意；5為非常滿意）:"):
+with st.expander("Q22-1.滿意於彈性且有效率的學校行政 (範圍1～5；1為非常不滿意；5為非常滿意）:"):
     # df_freshman.iloc[:,60] ## 22-1滿意於彈性且有效率的學校行政
     column_index = 60
     item_name = "滿意於彈性且有效率的學校行政 (範圍1～5；1為非常不滿意；5為非常滿意）"
@@ -3562,10 +3578,18 @@ st.markdown("##")  ## 更大的间隔
 
 
 
-
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">入學至今，對於課程安排的認同程度（範圍1～5；1為非常不同意；5為非常同意）.</p>
+""", unsafe_allow_html=True)
 ###### Q23. 入學至今，對於課程安排的認同程度（範圍1～5；1為非常不同意；5為非常同意）
 ##### Q23-1 選課前，我可以在網站上清楚看到各課程大綱
-with st.expander("Q23.入學至今，對於課程安排的認同程度. Q23-1.選課前，我可以在網站上清楚看到各課程大綱（範圍 1～5；1為非常不同意；5為非常同意）:"):
+with st.expander("Q23-1.選課前，我可以在網站上清楚看到各課程大綱（範圍 1～5；1為非常不同意；5為非常同意）:"):
     # df_freshman.iloc[:,87] ## 23-1選課前，我可以在網站上清楚看到各課程大綱
     column_index = 87
     item_name = "選課前，我可以在網站上清楚看到各課程大綱（範圍 1～5；1為非常不同意；5為非常同意）"
@@ -3785,9 +3809,18 @@ with st.expander("Q23-6.透過學校的課程，我在畢業前能學到足夠�
 st.markdown("##")  ## 更大的间隔
 
 
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">入學至今，對於「外語能力」的認同程度（範圍1～5；1為非常不同意；5為非常同意）.</p>
+""", unsafe_allow_html=True)
 ###### Q24 入學至今，對於「外語能力」的認同程度（範圍1～5；1為非常不同意；5為非常同意）
 ##### Q24-1 我能讀懂英文教科書
-with st.expander("Q24.入學至今，對於「外語能力」的認同程度. Q24-1.我能讀懂英文教科書（範圍 1～5；1為非常不同意；5為非常同意）:"):
+with st.expander("Q24-1.我能讀懂英文教科書（範圍 1～5；1為非常不同意；5為非常同意）:"):
     # df_freshman.iloc[:,94] ## 24-1我能讀懂英文教科書
     column_index = 94
     item_name = "我能讀懂英文教科書（範圍 1～5；1為非常不同意；5為非常同意）"
@@ -3970,10 +4003,18 @@ with st.expander("Q24-5.我認為自己在畢業後，能以外語與人有效�
 st.markdown("##")  ## 更大的间隔
 
 
-
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">入學至今，課程學習時，下列事項發生的頻率（範圍1～5；1為沒有發生過；5為非常頻繁）.</p>
+""", unsafe_allow_html=True)
 ###### Q25 入學至今，課程學習時，下列事項發生的頻率（範圍1～5；1為沒有發生過；5為非常頻繁）
 ##### Q25-1 請求同學或學長姐協助解決課業問題
-with st.expander("Q25.入學至今，課程學習時，下列事項發生的頻率.  Q25-1.請求同學或學長姐協助解決課業問題（範圍1～5；1為沒有發生過；5為非常頻繁）:"):
+with st.expander("Q25-1.請求同學或學長姐協助解決課業問題（範圍1～5；1為沒有發生過；5為非常頻繁）:"):
     # df_freshman.iloc[:,100] ## 25-1請求同學或學長姐協助解決課業問題
     column_index = 100
     item_name = "請求同學或學長姐協助解決課業問題（範圍1～5；1為沒有發生過；5為非常頻繁）"
@@ -4378,10 +4419,18 @@ with st.expander("Q25-11.依老師要求繳交作業或報告（範圍1～5；1�
 st.markdown("##")  ## 更大的间隔
 
 
-
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">入學至今，學期上課期間平均「每天」花在下列活動的時間程度（範圍1～5；1為程度非常低；5為程度非常高）.</p>
+""", unsafe_allow_html=True)
 ###### Q26 入學至今，學期上課期間平均「每天」花在下列活動的時間程度（範圍1～5；1為程度非常低；5為程度非常高）
 ##### Q26-1 學習準備（如課程預習、蒐集資料等）
-with st.expander("Q26.入學至今，學期上課期間平均「每天」花在下列活動的時間程度. Q26-1.學習準備（如課程預習、蒐集資料等）（範圍1～5；1為程度非常低；5為程度非常高）:"):
+with st.expander("Q26-1.學習準備（如課程預習、蒐集資料等）（範圍1～5；1為程度非常低；5為程度非常高）:"):
     # df_freshman.iloc[:,112] ## 26-1學習準備（如課程預習、蒐集資料等）
     column_index = 112
     item_name = "學習準備（如課程預習、蒐集資料等）（範圍1～5；1為程度非常低；5為程度非常高）"
@@ -4786,10 +4835,18 @@ with st.expander("Q26-11.男女朋友相處（範圍1～5；1為程度非常低�
 st.markdown("##")  ## 更大的间隔
 
 
-
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">入學至今，對於課程學習的態度（範圍1～5；1為非常不符合；5為非常符合）.</p>
+""", unsafe_allow_html=True)
 ###### Q27 入學至今，對於課程學習的態度（範圍1～5；1為非常不符合；5為非常符合）
 ##### Q27-1 覺得大部分的課程有趣
-with st.expander("Q27.入學至今，對於課程學習的態度   Q27-1.覺得大部分的課程有趣（範圍1～5；1為非常不符合；5為非常符合）:"):
+with st.expander("Q27-1.覺得大部分的課程有趣（範圍1～5；1為非常不符合；5為非常符合）:"):
     # df_freshman.iloc[:,124] ##27-1覺得大部分的課程有趣
     column_index = 124
     item_name = "覺得大部分的課程有趣（範圍1～5；1為非常不符合；5為非常符合）"
@@ -5120,10 +5177,18 @@ with st.expander("Q27-9.能保持積極進取的態度（範圍1～5；1為非�
 st.markdown("##")  ## 更大的间隔
 
 
-
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">入學至今，對於課程學習的掌握度（範圍1～5；1為非常不同意；5為非常同意）.</p>
+""", unsafe_allow_html=True)
 ###### Q28入學至今，對於課程學習的掌握度（範圍1～5；1為非常不同意；5為非常同意）
 ##### Q28-1 可以跟得上課程進度
-with st.expander("Q28.入學至今，對於課程學習的掌握度.  Q28-1.可以跟得上課程進度（範圍1～5；1為非常不同意；5為非常同意）:"):
+with st.expander("Q28-1.可以跟得上課程進度（範圍1～5；1為非常不同意；5為非常同意）:"):
     # df_freshman.iloc[:,134] ##28-1可以跟得上課程進度
     column_index = 134
     item_name = "可以跟得上課程進度（範圍1～5；1為非常不同意；5為非常同意）"
@@ -5565,10 +5630,18 @@ with st.expander("Q28-12.能充分掌握老師講課的重點（範圍1～5；1�
 st.markdown("##")  ## 更大的间隔
 
 
-
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">下列授課方式對於我在學習上的幫助程度（範圍1～5；1為程度非常低；5為程度非常高）.</p>
+""", unsafe_allow_html=True)
 ###### Q29 下列授課方式對於我在學習上的幫助程度（範圍1～5；1為程度非常低；5為程度非常高）
 ##### Q29-1 老師的講解內容或問題說明
-with st.expander("Q29.下列授課方式對於我在學習上的幫助程度.  Q29-1.老師的講解內容或問題說明（範圍1～5；1為程度非常低；5為程度非常高）:"):
+with st.expander("Q29-1.老師的講解內容或問題說明（範圍1～5；1為程度非常低；5為程度非常高）:"):
     # df_freshman.iloc[:,147] ##29-1老師的講解內容或問題說明
     column_index = 147
     item_name = "老師的講解內容或問題說明（範圍1～5；1為程度非常低；5為程度非常高）"
@@ -6124,10 +6197,18 @@ st.markdown("##")  ## 更大的间隔
 
 
 
-
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">入學至今，下列敘述符合我現狀的程度（範圍1～5；1為非常不同意；5為非常同意）.</p>
+""", unsafe_allow_html=True)
 ###### Q33入學至今，下列敘述符合我現狀的程度（範圍1～5；1為非常不同意；5為非常同意）
 ##### Q33-1 有考慮轉校
-with st.expander("Q33.入學至今，下列敘述符合我現狀的程度.  Q33-1.有考慮轉校（範圍1～5；1為非常不同意；5為非常同意）:"):
+with st.expander("Q33-1.有考慮轉校（範圍1～5；1為非常不同意；5為非常同意）:"):
     # df_freshman.iloc[:,163] ##33-1有考慮轉校
     column_index = 163
     item_name = "有考慮轉校（範圍1～5；1為非常不同意；5為非常同意）"
@@ -6421,10 +6502,18 @@ with st.expander("Q33-8.學習目標非常清楚明確（範圍1～5；1為非�
 st.markdown("##")  ## 更大的间隔
 
 
-
+st.markdown("""
+<style>
+.bold-small-font {
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+</style>
+<p class="bold-small-font">入學至今，對於本校「整體狀況」的認同程度（範圍1～5；1為非常不同意；5為非常同意）.</p>
+""", unsafe_allow_html=True)
 ###### Q34 入學至今，對於本校「整體狀況」的認同程度（範圍1～5；1為非常不同意；5為非常同意）
 ##### Q34-1 我願意推薦他人來就讀我的「科系」
-with st.expander("Q34.入學至今，對於本校「整體狀況」的認同程度.  Q34-1.我願意推薦他人來就讀我的「科系」（範圍1～5；1為非常不同意；5為非常同意）:"):
+with st.expander("Q34-1.我願意推薦他人來就讀我的「科系」（範圍1～5；1為非常不同意；5為非常同意）:"):
     # df_freshman.iloc[:,172] ##34-1我願意推薦他人來就讀我的「科系」
     column_index = 172
     item_name = "我願意推薦他人來就讀我的「科系」（範圍1～5；1為非常不同意；5為非常同意）"
