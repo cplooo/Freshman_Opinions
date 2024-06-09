@@ -258,10 +258,12 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         ### 设置x,y轴刻度标签
         ax.set_yticks(r + bar_width*(len(dataframes) / 2))  # 调整位置以使标签居中对齐到每个条形
         if fontsize_adjust==0:
-            ax.set_yticklabels(dataframes[0]['項目'].values)
+            # ax.set_yticklabels(dataframes[0]['項目'].values)
+            ax.set_yticklabels(desired_order)
             ax.tick_params(axis='x')
         if fontsize_adjust==1:
-            ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=yticklabel_fontsize)
+            # ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=yticklabel_fontsize)
+            ax.set_yticklabels(desired_order, fontsize=yticklabel_fontsize)
             ## 设置x轴刻度的字体大小
             ax.tick_params(axis='x', labelsize=xticklabel_fontsize)
         # ax.set_yticklabels(dataframes[0]['項目'].values)
@@ -350,7 +352,9 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         collections = [df_freshman_original[df_freshman_original['科系']==i] for i in selected_options]
         dataframes = [Frequency_Distribution(df, column_index, split_symbol, dropped_string, sum_choice) for df in collections]
         ## 形成所有學系'項目'欄位的所有值
-        desired_order  = list(set([item for df in dataframes for item in df['項目'].tolist()])) 
+        # desired_order  = list(set([item for df in dataframes for item in df['項目'].tolist()])) 
+        desired_order  = list(dict.fromkeys([item for df in dataframes for item in df['項目'].tolist()]))
+        desired_order = desired_order[::-1]  ## 反轉次序使得表與圖的項目次序一致
         ## 缺的項目值加以擴充， 並統一一樣的項目次序
         dataframes = [adjust_df(df, desired_order) for df in dataframes]
         combined_df = pd.concat(dataframes, keys=selected_options)
@@ -358,7 +362,9 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
         collections = [df_freshman_original[df_freshman_original['學院']==i] for i in selected_options]
         dataframes = [Frequency_Distribution(df, column_index, split_symbol, dropped_string, sum_choice) for df in collections]
         ## 形成所有學系'項目'欄位的所有值
-        desired_order  = list(set([item for df in dataframes for item in df['項目'].tolist()])) 
+        # desired_order  = list(set([item for df in dataframes for item in df['項目'].tolist()])) 
+        desired_order  = list(dict.fromkeys([item for df in dataframes for item in df['項目'].tolist()]))
+        desired_order = desired_order[::-1]  ## 反轉次序使得表與圖的項目次序一致
         ## 缺的項目值加以擴充， 並統一一樣的項目次序
         dataframes = [adjust_df(df, desired_order) for df in dataframes]        
         combined_df = pd.concat(dataframes, keys=selected_options)
@@ -421,10 +427,10 @@ def Draw(院_系, column_index, split_symbol=';', dropped_string='沒有工讀',
     ### 设置x,y轴刻度标签
     ax.set_yticks(r + bar_width*(len(dataframes) / 2))  # 调整位置以使标签居中对齐到每个条形
     if fontsize_adjust==0:
-        ax.set_yticklabels(dataframes[0]['項目'].values)
+        ax.set_yticklabels(desired_order)
         ax.tick_params(axis='x')
     if fontsize_adjust==1:
-        ax.set_yticklabels(dataframes[0]['項目'].values, fontsize=yticklabel_fontsize)
+        ax.set_yticklabels(desired_order, fontsize=yticklabel_fontsize)
         ## 设置x轴刻度的字体大小
         ax.tick_params(axis='x', labelsize=xticklabel_fontsize)
         
