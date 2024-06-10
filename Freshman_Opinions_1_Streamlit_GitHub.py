@@ -545,8 +545,8 @@ elif 系_院_校 == '2':
     # if choice !='全校':
     #     df_admission = df_admission_original
     
-    df_admission = df_admission_original  ## 
-    df_admission_faculty = df_admission  ## 沒有用途, 只是為了不要讓 Draw() 中的參數 'df_admission_faculty' 缺漏
+    df_freshman = df_freshman_original  ## 
+    df_freshman_faculty = df_freshman  ## 沒有用途, 只是為了不要讓 Draw() 中的參數 'df_admission_faculty' 缺漏
 
 
 
