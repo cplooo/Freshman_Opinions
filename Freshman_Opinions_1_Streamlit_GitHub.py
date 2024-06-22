@@ -108,6 +108,7 @@ replace_rules = {
 ##### 应用替换规则
 df_freshman_original['學院'] = df_freshman_original['學院'].replace(replace_rules)
 
+df_ID = load_data('df_ID.pkl')
 
 ####### 預先設定
 global 系_院_校, choice, df_freshman, choice_faculty, df_freshman_faculty, selected_options, collections, column_index, dataframes, desired_order, combined_df
@@ -504,7 +505,7 @@ st.markdown("""
     font-weight:bold !important;
 }
 </style>
-<p class="bold-small-font">以下調查與計算母體為大一填答同學 1674人</p>
+<p class="bold-small-font">以下調查與計算母體(大一同學): 實際填答 1674人; 應填答 2002人</p>
 """, unsafe_allow_html=True)
 
 st.markdown("##")  ## 更大的间隔
@@ -568,6 +569,72 @@ column_title = []
 
 
 ####### 問卷的各項問題
+###### 各班級填答人數與填答比例
+with st.expander("各班級填答人數與填答比例:"):
+    
+    item_name = "各班級填答人數與填答比例"
+    #### 各班人數:
+    df_ID_departments_unique_counts = df_ID.groupby('系級')['stno'].nunique()
+    # print(df_ID_departments_unique_counts)
+    # '''
+
+    # '''
+    #### 填答人數
+    df_freshman_original_departments_unique_counts = df_freshman_original.groupby('系級')['stno'].nunique()
+    # type(df_junior_original_departments_unique_counts)  ## pandas.core.series.Series
+    # len(df_junior_original_departments_unique_counts)  ## 51, 與 df_ID_departments_unique_counts 對照少了 "國際資訊學士學位學程三A"
+    # print(df_junior_original_departments_unique_counts)
+    # '''
+
+    # '''
+
+    # ### 添加新的索引 "國際資訊學士學位學程三A" 並設置值為 0
+    # df_junior_original_departments_unique_counts['國際資訊學士學位學程三A'] = 0
+    # # print(df_junior_original_departments_unique_counts)
+    # # '''
+
+    # # '''
+
+    #### 填答比例
+    ### 合并为DataFrame
+    df_填答比例 = pd.concat([df_ID_departments_unique_counts, df_freshman_original_departments_unique_counts], axis=1)
+    # type(df_填答比例)  ## pandas.core.frame.DataFrame
+    ### 修改欄位名稱
+    df_填答比例.columns = ['學生人數','填答人數']
+    ### 计算两行的比例并创建新行
+    df_填答比例['填答比例'] = df_填答比例['填答人數'] / df_填答比例['學生人數']
+    # len(df_填答比例)  ## 52
+    # print(df_填答比例['填答比例'])
+    # '''
+
+    # '''
+
+    ### 使用 reset_index 方法將索引變為列
+    df_填答比例 = df_填答比例.reset_index()
+    
+    
+    
+    
+    
+    
+
+
+    # ##### 產出 result_df
+    # result_df = Frequency_Distribution(df_junior, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1)
+
+    # ##### 存到 list 'df_streamlit'
+    # df_streamlit.append(result_df)  
+
+    ##### 使用Streamlit展示DataFrame 
+    # st.write(choice)
+    st.write(f"<h6>{item_name}</h6>", unsafe_allow_html=True)
+    st.write(df_填答比例.to_html(index=False), unsafe_allow_html=True)
+    st.markdown("##")  ## 更大的间隔
+
+
+
+
+
 ###### Q1 性別
 with st.expander("Q1. 性別:"):
     # df_freshman.iloc[:,1] ## 1性別
