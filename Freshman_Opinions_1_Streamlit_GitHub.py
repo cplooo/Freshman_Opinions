@@ -550,8 +550,6 @@ elif 系_院_校 == '2':
     df_freshman_faculty = df_freshman  ## 沒有用途, 只是為了不要讓 Draw() 中的參數 'df_admission_faculty' 缺漏
 
 
-
-
 # choice = st.selectbox('選擇學系', df_freshman_original['科系'].unique())
 # #choice = '化科系'
 # df_freshman = df_freshman_original[df_freshman_original['科系']==choice]
@@ -562,11 +560,10 @@ elif 系_院_校 == '2':
 # combined_df = pd.concat(dataframes, keys=selected_options)
 # # combined_df = pd.concat([dataframes[0], dataframes[1]], axis=0)
 
-
-
 df_streamlit = []
 column_title = []
 
+st.markdown("##")  ## 更大的间隔 
 
 ####### 問卷的各項問題
 ###### 各班級填答人數與填答比例
