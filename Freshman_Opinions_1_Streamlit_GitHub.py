@@ -1380,11 +1380,12 @@ st.markdown("""
 <p class="bold-small-font">對目前就讀科系的瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）</p>
 """, unsafe_allow_html=True)
 ###### Q19 對目前就讀科系的瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）
+##### 自定义函数，用于计算每群的比例
 def calculate_group_proportions(column):
     total = len(column)
-    group1_proportion = ((column == '1') | (column == '2')).sum() / total
-    group2_proportion = (column == '3').sum() / total
-    group3_proportion = ((column == '4') | (column == '5')).sum() / total
+    group1_proportion = ((column == 1) | (column == 2)).sum() / total
+    group2_proportion = (column == 3).sum() / total
+    group3_proportion = ((column == 4) | (column == 5)).sum() / total
     return pd.Series([group1_proportion, group2_proportion, group3_proportion], index=['1_or_2', '3', '4_or_5'])
 
 ##### Q19-1 學習範圍與目標
@@ -1630,10 +1631,15 @@ st.markdown("##")  ## 更大的间隔
 
 ##### Q19.對目前就讀科系的瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）: 分三群: 1+2,3,4+5
 with st.expander("Q19.對目前就讀科系的瞭解程度之各項目三等級程現: 低(1+2),中(3),高(4+5):"):
-    df_freshman_r = df_freshman.iloc[:,list(range(20, 26))]
+    df_freshman_r = df_freshman.iloc[:,list(range(20, 26))].reset_index(drop=True)
     df_freshman_r.columns = [df_freshman_r.columns[i][4:]  for i in range(df_freshman_r.shape[1])]
     figure_title ='對目前就讀科系的瞭解程度之各項目三等級程現: 低(1+2),中(3),高(4+5)'
+    # type(df_freshman_r.iloc[:,0][0])
     
+    
+    #### 轉換為int型態
+    for column in df_freshman_r.columns[0:df_freshman_r.shape[1]]:
+        df_freshman_r[column] = df_freshman_r[column].astype(int)
     
     
     
@@ -1646,7 +1652,7 @@ with st.expander("Q19.對目前就讀科系的瞭解程度之各項目三等級�
     #     group3_proportion = ((column == 4) | (column == 5)).sum() / total
     #     return pd.Series([group1_proportion, group2_proportion, group3_proportion], index=['1_or_2', '3', '4_or_5'])
     ### 应用函数到每个行
-    levelGroups_proportions = df_freshman_r.iloc[:,0:df_freshman_r.shape[1]].apply(calculate_group_proportions).round(4)
+    levelGroups_proportions = df_freshman_r.iloc[:,0:df_freshman_r.shape[1]].apply(calculate_group_proportions).round(2)
     levelGroups_proportions = levelGroups_proportions.T    
 
     #### 畫圖: 低, 中, 高 三等級
