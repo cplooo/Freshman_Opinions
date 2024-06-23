@@ -81,6 +81,87 @@ def adjust_df(df, order):
 
 
 
+###### 自定义函数，用于计算各欄位不同群的比例
+def calculate_group_proportions(column,level1,level2,level3,level4,level5 ):
+    total = len(column)
+    group1_proportion = ((column == level1) | (column == level2)).sum() / total
+    group2_proportion = (column == level3).sum() / total
+    group3_proportion = ((column == level4) | (column == level5)).sum() / total
+    return pd.Series([group1_proportion, group2_proportion, group3_proportion], index=['Low', 'Middle', 'High'])
+
+
+def LevelGroupsDraw(df,level1,level2,level3,level4,level5,title_fontsize=15,xlabel_fontsize=14,ylabel_fontsize=14,yticklabel_fontsize=14,annotation_fontsize=14,legend_fontsize=14,width=10,height=6):
+    # df_freshman_r = df_freshman.iloc[:,list(range(colFirst, colEnd))].reset_index(drop=True)
+    # df_freshman_r.columns = [df_freshman_r.columns[i][4:]  for i in range(df_freshman_r.shape[1])]
+    # figure_title ='對目前就讀科系的瞭解程度之各項目三等級程現: 低(1+2),中(3),高(4+5)'
+    # # type(df_freshman_r.iloc[:,0][0])
+    
+    
+    # #### 轉換為int型態
+    # for column in df_freshman_r.columns[0:df_freshman_r.shape[1]]:
+    #     df_freshman_r[column] = df_freshman_r[column].astype(int)
+    
+    
+    
+
+    ### 应用函数到每个行
+    levelGroups_proportions = df.iloc[:,0:df.shape[1]].apply(calculate_group_proportions(level1,level2,level3,level4,level5)).round(2)
+    levelGroups_proportions = levelGroups_proportions.T    
+
+    #### 畫圖: 低, 中, 高 三等級
+    ### 設置 matplotlib 支持中文的字體: 
+    matplotlib.rcParams['font.family'] = 'Noto Sans CJK JP'
+    matplotlib.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题 
+
+    # ### 设置字体大小
+    # title_fontsize = 18
+    # xlabel_fontsize = 16
+    # ylabel_fontsize = 16
+    # yticklabel_fontsize = 16
+    # annotation_fontsize = 12
+    # legend_fontsize = 16
+    # width=10 
+    # height=9
+ 
+    ### 获取索引的数值表示
+    y_values = range(len(levelGroups_proportions.index))
+    
+    ### 创建图形和坐标轴
+    plt.figure(figsize=(width, height))
+    
+    ### 绘制散点图: '程度低 1+2'
+    plt.plot(levelGroups_proportions.iloc[:,0], y_values, '-b', label='Low', marker='o')
+    ## 標示數據
+    for i in range(len(y_values)):
+        plt.text(levelGroups_proportions.iloc[:,0][i]+0.02, y_values[i], f'{levelGroups_proportions.iloc[:,0][i].round(2)}',fontsize=annotation_fontsize)
+    
+    ### 绘制散点图: '程度中等 3'
+    plt.plot(levelGroups_proportions.iloc[:,1], y_values, '-r', label='Middle', marker='*')
+    ## 標示數據
+    for i in range(len(y_values)):
+        plt.text(levelGroups_proportions.iloc[:,1][i]+0.02, y_values[i], f'{levelGroups_proportions.iloc[:,1][i].round(2)}',fontsize=annotation_fontsize)
+
+    ### 绘制散点图: '程度高 4+5'
+    plt.plot(levelGroups_proportions.iloc[:,2], y_values, '-g', label='High', marker='x')
+    ## 標示數據
+    for i in range(len(y_values)):
+        plt.text(levelGroups_proportions.iloc[:,2][i]+0.02, y_values[i], f'{levelGroups_proportions.iloc[:,2][i].round(2)}',fontsize=annotation_fontsize)
+
+    ### 设置 Y 轴的刻度标签为索引名称
+    plt.yticks(y_values, levelGroups_proportions.index,fontsize=yticklabel_fontsize)
+    ### 添加一些图形元素
+    plt.title(figure_title,fontsize=title_fontsize)
+    plt.xlabel('比例',fontsize=xlabel_fontsize)
+    # plt.ylabel('項目',fontsize=ylabel_fontsize)
+    plt.legend(fontsize=legend_fontsize)
+    
+    ### 显示网格线
+    plt.grid(True, linestyle='--', linewidth=0.5, color='gray')
+    plt.tight_layout()
+    # plt.show()
+    ### 在Streamlit中显示
+    st.pyplot(plt)
+
 
 
 
@@ -1642,73 +1723,76 @@ with st.expander("Q19.對目前就讀科系的瞭解程度之各項目三等級�
         df_freshman_r[column] = df_freshman_r[column].astype(int)
     
     
+    LevelGroupsDraw(df_freshman_r,1,2,3,4,5,title_fontsize=15,xlabel_fontsize=14,ylabel_fontsize=14,yticklabel_fontsize=14,annotation_fontsize=14,legend_fontsize=14,width=10,height=6)
     
-    #### 計算各欄位問題的下列三群所占比例: 1or2, 3, 4or5
-    # ### 自定义函数，用于计算每群的比例
-    # def calculate_group_proportions(column):
-    #     total = len(column)
-    #     group1_proportion = ((column == 1) | (column == 2)).sum() / total
-    #     group2_proportion = (column == 3).sum() / total
-    #     group3_proportion = ((column == 4) | (column == 5)).sum() / total
-    #     return pd.Series([group1_proportion, group2_proportion, group3_proportion], index=['1_or_2', '3', '4_or_5'])
-    ### 应用函数到每个行
-    levelGroups_proportions = df_freshman_r.iloc[:,0:df_freshman_r.shape[1]].apply(calculate_group_proportions).round(2)
-    levelGroups_proportions = levelGroups_proportions.T    
+    
+    # #### 計算各欄位問題的下列三群所占比例: 1or2, 3, 4or5
+    # # ### 自定义函数，用于计算每群的比例
+    # # def calculate_group_proportions(column):
+    # #     total = len(column)
+    # #     group1_proportion = ((column == 1) | (column == 2)).sum() / total
+    # #     group2_proportion = (column == 3).sum() / total
+    # #     group3_proportion = ((column == 4) | (column == 5)).sum() / total
+    # #     return pd.Series([group1_proportion, group2_proportion, group3_proportion], index=['1_or_2', '3', '4_or_5'])
+    # ### 应用函数到每个行
+    # levelGroups_proportions = df_freshman_r.iloc[:,0:df_freshman_r.shape[1]].apply(calculate_group_proportions).round(2)
+    # levelGroups_proportions = levelGroups_proportions.T    
 
-    #### 畫圖: 低, 中, 高 三等級
-    ### 設置 matplotlib 支持中文的字體: 
-    matplotlib.rcParams['font.family'] = 'Noto Sans CJK JP'
-    matplotlib.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题 
+    # #### 畫圖: 低, 中, 高 三等級
+    # ### 設置 matplotlib 支持中文的字體: 
+    # matplotlib.rcParams['font.family'] = 'Noto Sans CJK JP'
+    # matplotlib.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题 
 
-    ### 设置字体大小
-    title_fontsize = 18
-    xlabel_fontsize = 16
-    ylabel_fontsize = 16
-    yticklabel_fontsize = 16
-    annotation_fontsize = 12
-    legend_fontsize = 16
-    width=10 
-    height=9
+    # ### 设置字体大小
+    # title_fontsize = 18
+    # xlabel_fontsize = 16
+    # ylabel_fontsize = 16
+    # yticklabel_fontsize = 16
+    # annotation_fontsize = 12
+    # legend_fontsize = 16
+    # width=10 
+    # height=9
  
-    ### 获取索引的数值表示
-    y_values = range(len(levelGroups_proportions.index))
+    # ### 获取索引的数值表示
+    # y_values = range(len(levelGroups_proportions.index))
     
-    ### 创建图形和坐标轴
-    plt.figure(figsize=(width, height))
+    # ### 创建图形和坐标轴
+    # plt.figure(figsize=(width, height))
     
-    ### 绘制散点图: '程度低 1+2'
-    plt.plot(levelGroups_proportions.iloc[:,0], y_values, '-b', label='程度低 1+2', marker='o')
-    ## 標示數據
-    for i in range(len(y_values)):
-        plt.text(levelGroups_proportions.iloc[:,0][i]+0.02, y_values[i], f'{levelGroups_proportions.iloc[:,0][i].round(2)}',fontsize=annotation_fontsize)
+    # ### 绘制散点图: '程度低 1+2'
+    # plt.plot(levelGroups_proportions.iloc[:,0], y_values, '-b', label='程度低 1+2', marker='o')
+    # ## 標示數據
+    # for i in range(len(y_values)):
+    #     plt.text(levelGroups_proportions.iloc[:,0][i]+0.02, y_values[i], f'{levelGroups_proportions.iloc[:,0][i].round(2)}',fontsize=annotation_fontsize)
     
-    ### 绘制散点图: '程度中等 3'
-    plt.plot(levelGroups_proportions.iloc[:,1], y_values, '-r', label='程度中等 3', marker='*')
-    ## 標示數據
-    for i in range(len(y_values)):
-        plt.text(levelGroups_proportions.iloc[:,1][i]+0.02, y_values[i], f'{levelGroups_proportions.iloc[:,1][i].round(2)}',fontsize=annotation_fontsize)
+    # ### 绘制散点图: '程度中等 3'
+    # plt.plot(levelGroups_proportions.iloc[:,1], y_values, '-r', label='程度中等 3', marker='*')
+    # ## 標示數據
+    # for i in range(len(y_values)):
+    #     plt.text(levelGroups_proportions.iloc[:,1][i]+0.02, y_values[i], f'{levelGroups_proportions.iloc[:,1][i].round(2)}',fontsize=annotation_fontsize)
 
-    ### 绘制散点图: '程度高 4+5'
-    plt.plot(levelGroups_proportions.iloc[:,2], y_values, '-g', label='程度高 4+5', marker='x')
-    ## 標示數據
-    for i in range(len(y_values)):
-        plt.text(levelGroups_proportions.iloc[:,2][i]+0.02, y_values[i], f'{levelGroups_proportions.iloc[:,2][i].round(2)}',fontsize=annotation_fontsize)
+    # ### 绘制散点图: '程度高 4+5'
+    # plt.plot(levelGroups_proportions.iloc[:,2], y_values, '-g', label='程度高 4+5', marker='x')
+    # ## 標示數據
+    # for i in range(len(y_values)):
+    #     plt.text(levelGroups_proportions.iloc[:,2][i]+0.02, y_values[i], f'{levelGroups_proportions.iloc[:,2][i].round(2)}',fontsize=annotation_fontsize)
 
-    ### 设置 Y 轴的刻度标签为索引名称
-    plt.yticks(y_values, levelGroups_proportions.index,fontsize=yticklabel_fontsize)
-    ### 添加一些图形元素
-    plt.title(figure_title,fontsize=title_fontsize)
-    plt.xlabel('比例',fontsize=xlabel_fontsize)
-    plt.ylabel('項目',fontsize=ylabel_fontsize)
-    plt.legend(fontsize=legend_fontsize)
+    # ### 设置 Y 轴的刻度标签为索引名称
+    # plt.yticks(y_values, levelGroups_proportions.index,fontsize=yticklabel_fontsize)
+    # ### 添加一些图形元素
+    # plt.title(figure_title,fontsize=title_fontsize)
+    # plt.xlabel('比例',fontsize=xlabel_fontsize)
+    # # plt.ylabel('項目',fontsize=ylabel_fontsize)
+    # plt.legend(fontsize=legend_fontsize)
     
-    ### 显示网格线
-    plt.grid(True, linestyle='--', linewidth=0.5, color='gray')
-    plt.tight_layout()
-    # plt.show()
-    ### 在Streamlit中显示
-    st.pyplot(plt)
-
+    # ### 显示网格线
+    # plt.grid(True, linestyle='--', linewidth=0.5, color='gray')
+    # plt.tight_layout()
+    # # plt.show()
+    # ### 在Streamlit中显示
+    # st.pyplot(plt)
+    
+st.markdown("##")  ## 更大的间隔
                             
 
 
@@ -7347,40 +7431,40 @@ st.markdown("##")  ## 更大的间隔
 
 
 
-###### Q35 其他建議事項（如有其他建議學校改善的事項，敬請提出）
-with st.expander("Q35.其他建議事項（如有其他建議學校改善的事項，敬請提出）:"):
-    # df_freshman.iloc[:,176] ##35其他建議事項（如有其他建議學校改善的事項，敬請提出）
-    column_index = 176
-    item_name = "其他建議事項（如有其他建議學校改善的事項，敬請提出）"
-    column_title.append(df_freshman.columns[column_index][2:])
+# ###### Q35 其他建議事項（如有其他建議學校改善的事項，敬請提出）
+# with st.expander("Q35.其他建議事項（如有其他建議學校改善的事項，敬請提出）:"):
+#     # df_freshman.iloc[:,176] ##35其他建議事項（如有其他建議學校改善的事項，敬請提出）
+#     column_index = 176
+#     item_name = "其他建議事項（如有其他建議學校改善的事項，敬請提出）"
+#     column_title.append(df_freshman.columns[column_index][2:])
 
 
-    #### 產出 result_df
-    result_df = Frequency_Distribution(df_freshman, column_index, split_symbol=';', dropped_string='', sum_choice=1)
+#     #### 產出 result_df
+#     result_df = Frequency_Distribution(df_freshman, column_index, split_symbol=';', dropped_string='', sum_choice=1)
 
-    #### 存到 list 'df_streamlit'
-    df_streamlit.append(result_df)  
+#     #### 存到 list 'df_streamlit'
+#     df_streamlit.append(result_df)  
 
-    #### 使用Streamlit展示DataFrame "result_df"，但不显示索引
-    # st.write(choice)
-    st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
-    st.write(result_df.to_html(index=False), unsafe_allow_html=True)
-    st.markdown("##")  ## 更大的间隔
+#     #### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+#     # st.write(choice)
+#     st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
+#     st.write(result_df.to_html(index=False), unsafe_allow_html=True)
+#     st.markdown("##")  ## 更大的间隔
 
-    #### 使用Streamlit畫單一圖 & 比較圖
-    ### 畫比較圖時, 比較單位之選擇:
-    if 系_院_校 == '0':
-        ## 使用multiselect组件让用户进行多重选择
-        selected_options = st.multiselect('選擇比較學系：', df_freshman_original['科系'].unique(), default=[choice,'企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
-    if 系_院_校 == '1':
-        ## 使用multiselect组件让用户进行多重选择
-        selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
+#     #### 使用Streamlit畫單一圖 & 比較圖
+#     ### 畫比較圖時, 比較單位之選擇:
+#     if 系_院_校 == '0':
+#         ## 使用multiselect组件让用户进行多重选择
+#         selected_options = st.multiselect('選擇比較學系：', df_freshman_original['科系'].unique(), default=[choice,'企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
+#     if 系_院_校 == '1':
+#         ## 使用multiselect组件让用户进行多重选择
+#         selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
 
-    # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
-    # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
-    Draw(系_院_校, column_index, split_symbol=';', dropped_string='', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2, fontsize_adjust=0)
+#     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
+#     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
+#     Draw(系_院_校, column_index, split_symbol=';', dropped_string='', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2, fontsize_adjust=0)
     
-st.markdown("##")  ## 更大的间隔
+# st.markdown("##")  ## 更大的间隔
           
           
           
