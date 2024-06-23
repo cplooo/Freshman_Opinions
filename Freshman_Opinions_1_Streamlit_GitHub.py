@@ -1718,7 +1718,7 @@ st.markdown("##")  ## 更大的间隔
 with st.expander("Q19.對目前就讀科系的瞭解程度之各項目三等級呈現: 低(1+2),中(3),高(4+5):"):
     df_freshman_r = df_freshman.iloc[:,list(range(20, 26))].reset_index(drop=True)
     df_freshman_r.columns = [df_freshman_r.columns[i][4:]  for i in range(df_freshman_r.shape[1])]
-    figure_title ='對目前就讀科系的瞭解程度之各項目三等級呈現: 低(1+2),中(3),高(4+5)'
+    figure_title =choice+': '+'對目前就讀科系的瞭解程度之各項目三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
     
@@ -1727,7 +1727,7 @@ with st.expander("Q19.對目前就讀科系的瞭解程度之各項目三等級�
         df_freshman_r[column] = df_freshman_r[column].astype(int)
     
     
-    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,title_fontsize=15,xlabel_fontsize=14,ylabel_fontsize=14,yticklabel_fontsize=14,annotation_fontsize=14,legend_fontsize=14,width=10,height=6)
+    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=15,xlabel_fontsize=14,ylabel_fontsize=14,yticklabel_fontsize=14,annotation_fontsize=14,legend_fontsize=14,width=10,height=6)
     
     
     # #### 計算各欄位問題的下列三群所占比例: 1or2, 3, 4or5
