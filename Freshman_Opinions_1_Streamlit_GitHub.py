@@ -1721,7 +1721,7 @@ with st.expander("Q19.對目前就讀科系的瞭解程度之各項目三等級�
         df_freshman_r[column] = df_freshman_r[column].astype(int)
     
     
-    LevelGroupsDraw(df_freshman_r,1,2,3,4,5,title_fontsize=15,xlabel_fontsize=14,ylabel_fontsize=14,yticklabel_fontsize=14,annotation_fontsize=14,legend_fontsize=14,width=10,height=6)
+    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,title_fontsize=15,xlabel_fontsize=14,ylabel_fontsize=14,yticklabel_fontsize=14,annotation_fontsize=14,legend_fontsize=14,width=10,height=6)
     
     
     # #### 計算各欄位問題的下列三群所占比例: 1or2, 3, 4or5
