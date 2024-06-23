@@ -4148,6 +4148,24 @@ st.markdown("##")  ## 更大的间隔
 
 
 
+##### Q22.我對於本校所提供資源或支援事項的「滿意程度」（範圍1～5；1為非常不瞭解；5為非常瞭解）: 分三群: 1+2,3,4+5
+with st.expander("Q22.對於本校所提供資源或支援事項的「滿意程度」各項目三等級呈現: 低(1+2),中(3),高(4+5):"):
+    df_freshman_r = df_freshman.iloc[:,list(range(60, 86))].reset_index(drop=True)
+    df_freshman_r.columns = [df_freshman_r.columns[i][4:] if i<9 else df_freshman_r.columns[i][5:] for i in range(df_freshman_r.shape[1])]
+    figure_title =choice+': '+'對於本校所提供資源或支援事項的「滿意程度」各項目三等級呈現: 低(1+2),中(3),高(4+5)'
+    # type(df_freshman_r.iloc[:,0][0])
+    
+    #### 轉換為int型態
+    for column in df_freshman_r.columns[0:df_freshman_r.shape[1]]:
+        df_freshman_r[column] = df_freshman_r[column].astype(int)
+    
+    
+    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=10,xlabel_fontsize=9,ylabel_fontsize=9,yticklabel_fontsize=9,annotation_fontsize=9,legend_fontsize=9,width=10,height=6)
+       
+st.markdown("##")  ## 更大的间隔
+
+
+
 st.markdown("""
 <style>
 .bold-small-font {
