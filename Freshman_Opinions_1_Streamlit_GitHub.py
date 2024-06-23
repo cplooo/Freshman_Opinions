@@ -1380,6 +1380,13 @@ st.markdown("""
 <p class="bold-small-font">對目前就讀科系的瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）</p>
 """, unsafe_allow_html=True)
 ###### Q19 對目前就讀科系的瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）
+def calculate_group_proportions(column):
+    total = len(column)
+    group1_proportion = ((column == 1) | (column == 2)).sum() / total
+    group2_proportion = (column == 3).sum() / total
+    group3_proportion = ((column == 4) | (column == 5)).sum() / total
+    return pd.Series([group1_proportion, group2_proportion, group3_proportion], index=['1_or_2', '3', '4_or_5'])
+
 ##### Q19-1 學習範圍與目標
 # with st.expander("Q19 對目前就讀科系的瞭解程度. Q19-1. 學習範圍與目標瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）:"):
 with st.expander("Q19-1. 學習範圍與目標瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）:"):
@@ -1629,13 +1636,13 @@ with st.expander("Q19.對目前就讀科系的瞭解程度之各項目三等級�
     
     
     #### 計算各欄位問題的下列三群所占比例: 1or2, 3, 4or5
-    ### 自定义函数，用于计算每群的比例
-    def calculate_group_proportions(column):
-        total = len(column)
-        group1_proportion = ((column == 1) | (column == 2)).sum() / total
-        group2_proportion = (column == 3).sum() / total
-        group3_proportion = ((column == 4) | (column == 5)).sum() / total
-        return pd.Series([group1_proportion, group2_proportion, group3_proportion], index=['1_or_2', '3', '4_or_5'])
+    # ### 自定义函数，用于计算每群的比例
+    # def calculate_group_proportions(column):
+    #     total = len(column)
+    #     group1_proportion = ((column == 1) | (column == 2)).sum() / total
+    #     group2_proportion = (column == 3).sum() / total
+    #     group3_proportion = ((column == 4) | (column == 5)).sum() / total
+    #     return pd.Series([group1_proportion, group2_proportion, group3_proportion], index=['1_or_2', '3', '4_or_5'])
     ### 应用函数到每个行
     levelGroups_proportions = df_freshman_r.iloc[:,0:df_freshman_r.shape[1]].apply(calculate_group_proportions).round(2)
     levelGroups_proportions = levelGroups_proportions.T    
