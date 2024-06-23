@@ -1686,10 +1686,13 @@ with st.expander("Q19.對目前就讀科系的瞭解程度之各項目三等級�
     plt.xlabel('比例',fontsize=xlabel_fontsize)
     plt.ylabel('項目',fontsize=ylabel_fontsize)
     plt.legend(fontsize=legend_fontsize)
+    
     ### 显示网格线
     plt.grid(True, linestyle='--', linewidth=0.5, color='gray')
-    ### 显示图形
-    plt.show()
+    plt.tight_layout()
+    # plt.show()
+    ### 在Streamlit中显示
+    st.pyplot(plt)
 
                             
 
