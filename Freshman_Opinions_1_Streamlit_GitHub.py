@@ -1715,10 +1715,10 @@ st.markdown("##")  ## 更大的间隔
 
 
 ##### Q19.對目前就讀科系的瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）: 分三群: 1+2,3,4+5
-with st.expander("Q19.對目前就讀科系的瞭解程度之各項目三等級程現: 低(1+2),中(3),高(4+5):"):
+with st.expander("Q19.對目前就讀科系的瞭解程度之各項目三等級呈現: 低(1+2),中(3),高(4+5):"):
     df_freshman_r = df_freshman.iloc[:,list(range(20, 26))].reset_index(drop=True)
     df_freshman_r.columns = [df_freshman_r.columns[i][4:]  for i in range(df_freshman_r.shape[1])]
-    figure_title ='對目前就讀科系的瞭解程度之各項目三等級程現: 低(1+2),中(3),高(4+5)'
+    figure_title ='對目前就讀科系的瞭解程度之各項目三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
     
@@ -2006,6 +2006,24 @@ with st.expander("Q20-5. 整體滿意度（範圍1～5；1為程度非常低；5
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2, fontsize_adjust=0)
     
+st.markdown("##")  ## 更大的间隔
+
+
+
+##### Q20.入學至今，我感覺目前就讀科系的總體課程狀況（範圍1～5；1為非常不瞭解；5為非常瞭解）: 分三群: 1+2,3,4+5
+with st.expander("Q20.對目前就讀科系的總體課程狀況各項目三等級呈現: 低(1+2),中(3),高(4+5):"):
+    df_freshman_r = df_freshman.iloc[:,list(range(27, 32))].reset_index(drop=True)
+    df_freshman_r.columns = [df_freshman_r.columns[i][4:]  for i in range(df_freshman_r.shape[1])]
+    figure_title ='對目前就讀科系的總體課程狀況各項目三等級呈現: 低(1+2),中(3),高(4+5)'
+    # type(df_freshman_r.iloc[:,0][0])
+    
+    #### 轉換為int型態
+    for column in df_freshman_r.columns[0:df_freshman_r.shape[1]]:
+        df_freshman_r[column] = df_freshman_r[column].astype(int)
+    
+    
+    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,title_fontsize=15,xlabel_fontsize=14,ylabel_fontsize=14,yticklabel_fontsize=14,annotation_fontsize=14,legend_fontsize=14,width=10,height=6)
+       
 st.markdown("##")  ## 更大的间隔
 
 
