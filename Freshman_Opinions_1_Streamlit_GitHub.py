@@ -4441,7 +4441,7 @@ with st.expander("Q23.入學至今，對於課程安排的認同程度各項目�
         df_freshman_r[column] = df_freshman_r[column].astype(int)
     
     
-    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=10,xlabel_fontsize=9,ylabel_fontsize=9,yticklabel_fontsize=9,annotation_fontsize=9,legend_fontsize=9,width=10,height=6)
+    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=15,xlabel_fontsize=14,ylabel_fontsize=14,yticklabel_fontsize=14,annotation_fontsize=14,legend_fontsize=14,width=10,height=6)
 
 st.markdown("##")  ## 更大的间隔
 
