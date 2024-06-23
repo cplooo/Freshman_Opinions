@@ -5630,6 +5630,8 @@ st.markdown("##")  ## 更大的间隔
 
 
 
+
+
 st.markdown("""
 <style>
 .bold-small-font {
@@ -5997,6 +5999,33 @@ with st.expander("Q27-9.能保持積極進取的態度（範圍1～5；1為非�
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2, fontsize_adjust=0)
     
 st.markdown("##")  ## 更大的间隔
+
+
+
+##### Q27.入學至今，對於課程學習的態度（範圍1～5；1為非常不瞭解；5為非常瞭解）: 分三群: 1+2,3,4+5
+with st.expander("Q27.入學至今，對於課程學習的態度之各項目三等級呈現: 低(1+2),中(3),高(4+5):"):
+    df_freshman_r = df_freshman.iloc[:,list(range(124, 133))].reset_index(drop=True)
+    df_freshman_r.columns = [df_freshman_r.columns[i][4:] if i<9 else df_freshman_r.columns[i][5:] for i in range(df_freshman_r.shape[1])]
+    figure_title =choice+': '+'入學至今，對於課程學習的態度之各項目三等級呈現: 低(1+2),中(3),高(4+5)'
+    # type(df_freshman_r.iloc[:,0][0])
+    
+    ####
+    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+
+    #### 選擇性地，去掉包含 NaN 的行
+    df_freshman_r = df_freshman_r.dropna()
+
+    #### 轉換為int型態
+    for column in df_freshman_r.columns[0:df_freshman_r.shape[1]]:
+        df_freshman_r[column] = df_freshman_r[column].astype(int)
+    
+    
+    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=13,xlabel_fontsize=12,ylabel_fontsize=12,yticklabel_fontsize=12,annotation_fontsize=12,legend_fontsize=12,width=10,height=6)
+
+st.markdown("##")  ## 更大的间隔
+
+
+
 
 
 st.markdown("""
@@ -6486,6 +6515,32 @@ with st.expander("Q28-12.能充分掌握老師講課的重點（範圍1～5；1�
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2, fontsize_adjust=0)
     
 st.markdown("##")  ## 更大的间隔
+
+
+
+##### Q28.入學至今，對於課程學習的掌握度（範圍1～5；1為非常不瞭解；5為非常瞭解）: 分三群: 1+2,3,4+5
+with st.expander("Q28.入學至今，對於課程學習的掌握度之各項目三等級呈現: 低(1+2),中(3),高(4+5):"):
+    df_freshman_r = df_freshman.iloc[:,list(range(134, 146))].reset_index(drop=True)
+    df_freshman_r.columns = [df_freshman_r.columns[i][4:] if i<9 else df_freshman_r.columns[i][5:] for i in range(df_freshman_r.shape[1])]
+    figure_title =choice+': '+'入學至今，對於課程學習的掌握度之各項目三等級呈現: 低(1+2),中(3),高(4+5)'
+    # type(df_freshman_r.iloc[:,0][0])
+    
+    ####
+    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+
+    #### 選擇性地，去掉包含 NaN 的行
+    df_freshman_r = df_freshman_r.dropna()
+
+    #### 轉換為int型態
+    for column in df_freshman_r.columns[0:df_freshman_r.shape[1]]:
+        df_freshman_r[column] = df_freshman_r[column].astype(int)
+    
+    
+    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=13,xlabel_fontsize=12,ylabel_fontsize=12,yticklabel_fontsize=12,annotation_fontsize=12,legend_fontsize=12,width=10,height=6)
+
+st.markdown("##")  ## 更大的间隔
+
+
 
 
 st.markdown("""
@@ -6978,6 +7033,31 @@ st.markdown("##")  ## 更大的间隔
 
 
 
+##### Q29.下列授課方式對於我在學習上的幫助程度（範圍1～5；1為非常不瞭解；5為非常瞭解）: 分三群: 1+2,3,4+5
+with st.expander("Q29.下列各種授課方式對於學習上的幫助程度三等級呈現: 低(1+2),中(3),高(4+5):"):
+    df_freshman_r = df_freshman.iloc[:,list(range(147, 159))].reset_index(drop=True)
+    df_freshman_r.columns = [df_freshman_r.columns[i][4:] if i<9 else df_freshman_r.columns[i][5:] for i in range(df_freshman_r.shape[1])]
+    figure_title =choice+': '+'下列各種授課方式對於學習上的幫助程度三等級呈現: 低(1+2),中(3),高(4+5)'
+    # type(df_freshman_r.iloc[:,0][0])
+    
+    ####
+    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+
+    #### 選擇性地，去掉包含 NaN 的行
+    df_freshman_r = df_freshman_r.dropna()
+
+    #### 轉換為int型態
+    for column in df_freshman_r.columns[0:df_freshman_r.shape[1]]:
+        df_freshman_r[column] = df_freshman_r[column].astype(int)
+    
+    
+    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=13,xlabel_fontsize=12,ylabel_fontsize=12,yticklabel_fontsize=12,annotation_fontsize=12,legend_fontsize=12,width=10,height=6)
+
+st.markdown("##")  ## 更大的间隔
+
+
+
+
 ###### Q30 入學至今，我感到比較困擾的問題（可複選）
 with st.expander("Q30.入學至今，我感到比較困擾的問題（可複選）:"):
     # df_freshman.iloc[:,159] ##30入學至今，我感到比較困擾的問題（可複選）
@@ -7429,6 +7509,32 @@ with st.expander("Q33-8.學習目標非常清楚明確（範圍1～5；1為非�
 st.markdown("##")  ## 更大的间隔
 
 
+
+##### Q33.入學至今，下列敘述符合我現狀的程度（範圍1～5；1為非常不瞭解；5為非常瞭解）: 分三群: 1+2,3,4+5
+with st.expander("Q33.入學至今，下列敘述符合我現狀的程度之三等級呈現: 低(1+2),中(3),高(4+5):"):
+    df_freshman_r = df_freshman.iloc[:,list(range(163, 171))].reset_index(drop=True)
+    df_freshman_r.columns = [df_freshman_r.columns[i][4:] if i<9 else df_freshman_r.columns[i][5:] for i in range(df_freshman_r.shape[1])]
+    figure_title =choice+': '+'入學至今，下列敘述符合我現狀的程度之三等級呈現: 低(1+2),中(3),高(4+5)'
+    # type(df_freshman_r.iloc[:,0][0])
+    
+    ####
+    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+
+    #### 選擇性地，去掉包含 NaN 的行
+    df_freshman_r = df_freshman_r.dropna()
+
+    #### 轉換為int型態
+    for column in df_freshman_r.columns[0:df_freshman_r.shape[1]]:
+        df_freshman_r[column] = df_freshman_r[column].astype(int)
+    
+    
+    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=13,xlabel_fontsize=12,ylabel_fontsize=12,yticklabel_fontsize=12,annotation_fontsize=12,legend_fontsize=12,width=10,height=6)
+
+st.markdown("##")  ## 更大的间隔
+
+
+
+
 st.markdown("""
 <style>
 .bold-small-font {
@@ -7595,6 +7701,30 @@ with st.expander("Q34-4.整體而言，我對學校感到滿意（範圍1～5；
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2, fontsize_adjust=0)
     
+st.markdown("##")  ## 更大的间隔
+
+
+
+##### Q34.入學至今，對於本校「整體狀況」的認同程度（（範圍1～5；1為非常不瞭解；5為非常瞭解）: 分三群: 1+2,3,4+5
+with st.expander("Q34.入學至今，對於本校「整體狀況」的認同程度之三等級呈現: 低(1+2),中(3),高(4+5):"):
+    df_freshman_r = df_freshman.iloc[:,list(range(172, 176))].reset_index(drop=True)
+    df_freshman_r.columns = [df_freshman_r.columns[i][4:] if i<9 else df_freshman_r.columns[i][5:] for i in range(df_freshman_r.shape[1])]
+    figure_title =choice+': '+'入學至今，對於本校「整體狀況」的認同程度之三等級呈現: 低(1+2),中(3),高(4+5)'
+    # type(df_freshman_r.iloc[:,0][0])
+    
+    ####
+    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+
+    #### 選擇性地，去掉包含 NaN 的行
+    df_freshman_r = df_freshman_r.dropna()
+
+    #### 轉換為int型態
+    for column in df_freshman_r.columns[0:df_freshman_r.shape[1]]:
+        df_freshman_r[column] = df_freshman_r[column].astype(int)
+    
+    
+    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=13,xlabel_fontsize=12,ylabel_fontsize=12,yticklabel_fontsize=12,annotation_fontsize=12,legend_fontsize=12,width=10,height=6)
+
 st.markdown("##")  ## 更大的间隔
 
 
