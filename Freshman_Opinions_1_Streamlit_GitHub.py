@@ -1620,6 +1620,80 @@ with st.expander("Q19-6. 畢業條件相關規定瞭解程度（範圍1～5；1�
 st.markdown("##")  ## 更大的间隔
 
 
+
+##### Q19.對目前就讀科系的瞭解程度（範圍1～5；1為非常不瞭解；5為非常瞭解）: 分三群: 1+2,3,4+5
+with st.expander("Q19.對目前就讀科系的瞭解程度之各項目三等級程現: 低(1+2),中(3),高(4+5):"):
+    df_freshman_r = df_freshman.iloc[:,list(range(20, 26))]
+    df_freshman_r.columns = [df_freshman_r.columns[i][4:]  for i in range(df_freshman_r.shape[1])]
+    figure_title ='對目前就讀科系的瞭解程度之各項目三等級程現: 低(1+2),中(3),高(4+5)'
+    
+    
+    #### 計算各欄位問題的下列三群所占比例: 1or2, 3, 4or5
+    ### 自定义函数，用于计算每群的比例
+    def calculate_group_proportions(column):
+        total = len(column)
+        group1_proportion = ((column == 1) | (column == 2)).sum() / total
+        group2_proportion = (column == 3).sum() / total
+        group3_proportion = ((column == 4) | (column == 5)).sum() / total
+        return pd.Series([group1_proportion, group2_proportion, group3_proportion], index=['1_or_2', '3', '4_or_5'])
+    ### 应用函数到每个行
+    levelGroups_proportions = df_freshman_r.iloc[:,0:df_freshman_r.shape[1]].apply(calculate_group_proportions).round(2)
+    levelGroups_proportions = levelGroups_proportions.T    
+
+    #### 畫圖: 低, 中, 高 三等級
+    ### 設置 matplotlib 支持中文的字體: 
+    matplotlib.rcParams['font.family'] = 'Noto Sans CJK JP'
+    matplotlib.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题 
+
+    ### 设置字体大小
+    title_fontsize = 18
+    xlabel_fontsize = 16
+    ylabel_fontsize = 16
+    yticklabel_fontsize = 16
+    annotation_fontsize = 12
+    legend_fontsize = 16
+    width=10 
+    height=9
+ 
+    ### 获取索引的数值表示
+    y_values = range(len(levelGroups_proportions.index))
+    
+    ### 创建图形和坐标轴
+    plt.figure(figsize=(width, height))
+    
+    ### 绘制散点图: '程度低 1+2'
+    plt.plot(levelGroups_proportions.iloc[:,0], y_values, '-b', label='程度低 1+2', marker='o')
+    ## 標示數據
+    for i in range(len(y_values)):
+        plt.text(levelGroups_proportions.iloc[:,0][i]+0.02, y_values[i], f'{levelGroups_proportions.iloc[:,0][i].round(2)}',fontsize=annotation_fontsize)
+    
+    ### 绘制散点图: '程度中等 3'
+    plt.plot(levelGroups_proportions.iloc[:,1], y_values, '-r', label='程度中等 3', marker='*')
+    ## 標示數據
+    for i in range(len(y_values)):
+        plt.text(levelGroups_proportions.iloc[:,1][i]+0.02, y_values[i], f'{levelGroups_proportions.iloc[:,1][i].round(2)}',fontsize=annotation_fontsize)
+
+    ### 绘制散点图: '程度高 4+5'
+    plt.plot(levelGroups_proportions.iloc[:,2], y_values, '-g', label='程度高 4+5', marker='x')
+    ## 標示數據
+    for i in range(len(y_values)):
+        plt.text(levelGroups_proportions.iloc[:,2][i]+0.02, y_values[i], f'{levelGroups_proportions.iloc[:,2][i].round(2)}',fontsize=annotation_fontsize)
+
+    ### 设置 Y 轴的刻度标签为索引名称
+    plt.yticks(y_values, levelGroups_proportions.index,fontsize=yticklabel_fontsize)
+    ### 添加一些图形元素
+    plt.title(figure_title,fontsize=title_fontsize)
+    plt.xlabel('比例',fontsize=xlabel_fontsize)
+    plt.ylabel('項目',fontsize=ylabel_fontsize)
+    plt.legend(fontsize=legend_fontsize)
+    ### 显示网格线
+    plt.grid(True, linestyle='--', linewidth=0.5, color='gray')
+    ### 显示图形
+    plt.show()
+
+                            
+
+
 st.markdown("""
 <style>
 .bold-small-font {
