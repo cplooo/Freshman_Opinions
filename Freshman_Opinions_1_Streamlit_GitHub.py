@@ -5130,6 +5130,31 @@ with st.expander("Q25-11.依老師要求繳交作業或報告（範圍1～5；1�
 st.markdown("##")  ## 更大的间隔
 
 
+
+##### Q25.入學至今，課程學習時，下列事項發生的頻率（範圍1～5；1為非常不瞭解；5為非常瞭解）: 分三群: 1+2,3,4+5
+with st.expander("Q25.入學至今，課程學習時，各事項發生的頻率之三等級呈現: 低(1+2),中(3),高(4+5):"):
+    df_freshman_r = df_freshman.iloc[:,list(range(100, 111))].reset_index(drop=True)
+    df_freshman_r.columns = [df_freshman_r.columns[i][4:] if i<9 else df_freshman_r.columns[i][5:] for i in range(df_freshman_r.shape[1])]
+    figure_title =choice+': '+'入學至今，課程學習時，各事項發生的頻率之三等級呈現: 低(1+2),中(3),高(4+5)'
+    # type(df_freshman_r.iloc[:,0][0])
+    
+    ####
+    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+
+    #### 選擇性地，去掉包含 NaN 的行
+    df_freshman_r = df_freshman_r.dropna()
+
+    #### 轉換為int型態
+    for column in df_freshman_r.columns[0:df_freshman_r.shape[1]]:
+        df_freshman_r[column] = df_freshman_r[column].astype(int)
+    
+    
+    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=13,xlabel_fontsize=12,ylabel_fontsize=12,yticklabel_fontsize=12,annotation_fontsize=12,legend_fontsize=12,width=10,height=6)
+
+st.markdown("##")  ## 更大的间隔
+
+
+
 st.markdown("""
 <style>
 .bold-small-font {
