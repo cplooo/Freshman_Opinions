@@ -102,10 +102,8 @@ def LevelGroupsDraw(df,level1,level2,level3,level4,level5,title_fontsize=15,xlab
     #     df_freshman_r[column] = df_freshman_r[column].astype(int)
     
     
-    
-
     ### 应用函数到每个行
-    levelGroups_proportions = df.iloc[:,0:df.shape[1]].apply(calculate_group_proportions(level1,level2,level3,level4,level5)).round(2)
+    levelGroups_proportions = df.iloc[:,0:df.shape[1]].apply(calculate_group_proportions, args=(level1, level2, level3, level4, level5)).round(2)
     levelGroups_proportions = levelGroups_proportions.T    
 
     #### 畫圖: 低, 中, 高 三等級
