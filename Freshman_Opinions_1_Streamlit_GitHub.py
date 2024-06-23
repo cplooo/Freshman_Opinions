@@ -81,15 +81,15 @@ def adjust_df(df, order):
 
 
 
-###### 自定义函数，用于计算各欄位不同群的比例
-def calculate_group_proportions(column,level1,level2,level3,level4,level5 ):
-    total = len(column)
-    group1_proportion = ((column == level1) | (column == level2)).sum() / total
-    group2_proportion = (column == level3).sum() / total
-    group3_proportion = ((column == level4) | (column == level5)).sum() / total
-    return pd.Series([group1_proportion, group2_proportion, group3_proportion], index=['Low', 'Middle', 'High'])
+# ###### 自定义函数，用于计算各欄位不同群的比例
+# def calculate_group_proportions(column,level1,level2,level3,level4,level5 ):
+#     total = len(column)
+#     group1_proportion = ((column == level1) | (column == level2)).sum() / total
+#     group2_proportion = (column == level3).sum() / total
+#     group3_proportion = ((column == level4) | (column == level5)).sum() / total
+#     return pd.Series([group1_proportion, group2_proportion, group3_proportion], index=['Low', 'Middle', 'High'])
 
-
+@st.cache_data(ttl=3600, show_spinner="正在加載資料...")  ## Add the caching decorator
 def LevelGroupsDraw(df,level1,level2,level3,level4,level5,figure_title,title_fontsize=15,xlabel_fontsize=14,ylabel_fontsize=14,yticklabel_fontsize=14,annotation_fontsize=14,legend_fontsize=14,width=10,height=6):
     # df_freshman_r = df_freshman.iloc[:,list(range(colFirst, colEnd))].reset_index(drop=True)
     # df_freshman_r.columns = [df_freshman_r.columns[i][4:]  for i in range(df_freshman_r.shape[1])]
@@ -2027,6 +2027,8 @@ with st.expander("Q20.對目前就讀科系的總體課程狀況各項目三等�
 st.markdown("##")  ## 更大的间隔
 
 
+
+
 st.markdown("""
 <style>
 .bold-small-font {
@@ -3075,6 +3077,26 @@ with st.expander("Q21-26. 期望清楚實用的打工、獎助學金資訊（範
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.2, fontsize_adjust=0)
     
 st.markdown("##")  ## 更大的间隔
+
+
+
+##### Q21.我對於本校所提供資源或支援事項的「期待程度」（範圍1～5；1為非常不瞭解；5為非常瞭解）: 分三群: 1+2,3,4+5
+with st.expander("Q21.對於本校所提供資源或支援事項的「期待程度」各項目三等級呈現: 低(1+2),中(3),高(4+5):"):
+    df_freshman_r = df_freshman.iloc[:,list(range(33, 59))].reset_index(drop=True)
+    df_freshman_r.columns = [df_freshman_r.columns[i][4:]  for i in range(df_freshman_r.shape[1])]
+    [df_freshman_r.columns[i][4:] if i<9 else df_freshman_r.columns[i][5:] for i in range(df_freshman_r.shape[1])]
+    figure_title =choice+': '+'對於本校所提供資源或支援事項的「期待程度」各項目三等級呈現: 低(1+2),中(3),高(4+5)'
+    # type(df_freshman_r.iloc[:,0][0])
+    
+    #### 轉換為int型態
+    for column in df_freshman_r.columns[0:df_freshman_r.shape[1]]:
+        df_freshman_r[column] = df_freshman_r[column].astype(int)
+    
+    
+    LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=15,xlabel_fontsize=14,ylabel_fontsize=14,yticklabel_fontsize=14,annotation_fontsize=14,legend_fontsize=14,width=10,height=6)
+       
+st.markdown("##")  ## 更大的间隔
+
 
 
 st.markdown("""
