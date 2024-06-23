@@ -103,7 +103,13 @@ def LevelGroupsDraw(df,level1,level2,level3,level4,level5,title_fontsize=15,xlab
     
     
     ### 应用函数到每个行
-    levelGroups_proportions = df.iloc[:,0:df.shape[1]].apply(calculate_group_proportions, args=(level1, level2, level3, level4, level5)).round(2)
+    # 使用 lambda 函數和 apply 方法計算每列的群體比例
+    levelGroups_proportions = df.iloc[:,0:df.shape[1]].apply(lambda col: pd.Series([
+        ((col == level1) | (col == level2)).sum() / len(col),  # group1_proportion
+        (col == level3).sum() / len(col),                      # group2_proportion
+        ((col == level4) | (col == level5)).sum() / len(col)   # group3_proportion
+    ]), axis=0)
+    # levelGroups_proportions = df.iloc[:,0:df.shape[1]].apply(calculate_group_proportions, args=(level1, level2, level3, level4, level5)).round(2)
     levelGroups_proportions = levelGroups_proportions.T    
 
     #### 畫圖: 低, 中, 高 三等級
