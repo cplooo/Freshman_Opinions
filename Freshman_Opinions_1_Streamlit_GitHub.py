@@ -4172,6 +4172,263 @@ st.markdown("##")  ## 更大的间隔
 
 
 
+##### Q21-Q22比較.我對於本校所提供資源或支援事項的「期待程度」與「滿意程度」平均分數（範圍1～5；1為非常不瞭解；5為非常瞭解）.
+with st.expander("Q21與Q22比較.對於本校所提供資源或支援事項的「期待程度」與「滿意程度」平均分數比較:"):
+    #### Q21
+    # df_freshman.iloc[:,33] ## 21-1
+    # df_freshman.iloc[:,58]  ## 21-26
+    df_freshman_Q21 = df_freshman.iloc[:,33:59]  ## [1674 rows x 26 columns]
+    #df_freshman_Q21.shape  ## (1674, 26)
+    ### 轉換為int型態
+    for column in df_freshman_Q21.columns:
+        df_freshman_Q21[column] = df_freshman_Q21[column].astype(int)
+    # ### 计算字符串'６不知道'出现的次数
+    # search_string = '６不知道'
+    # count = 0
+    # for column in df_freshman_Q21.columns:
+    #     if df_freshman_Q21[column].dtype == 'object':  # 确保列的数据类型是字符串
+    #         count += df_freshman_Q21[column].str.contains(search_string).sum()
+    # print(f"'{search_string}' 出现的次数:", count) ## '６不知道' 出现的次数: 0
+    
+    
+    ### Q21 各項目平均值
+    df_freshman_Q21_MeanValues = df_freshman_Q21.mean()
+    '''
+    21-1期望彈性且有效率的學校行政                         3.804659
+    21-2期望便捷的選課查詢系統                           3.979689
+    21-3期望容易使用的學校網站                           3.971924
+    21-4期望豐富的專業圖書資源（含期刊、電子資料庫等）               3.876941
+    21-5期望完善的圖書館設施                            3.973716
+    21-6期望與就業接軌的實習機制                          4.056750
+    21-7期望健全的生活、職涯及諮商輔導機制                     3.958781
+    21-8期望完善的證照輔導與經費補助機制                      4.045400
+    21-9期望完善的競賽輔導與經費補助機制                      3.933094
+    21-10期望豐富的國際交流資源（如交換生、雙聯學位等）              3.964158
+    21-11期望充足的多元學習機會（如輔系、雙主修等）                3.873357
+    21-12期望國際化的學習環境（如外語自學中心、外語情境教室、全英語教學等）    3.780765
+    21-13期望彈性且合理的修課安排                         4.142174
+    21-14期望完善的選課輔導與協助管道                       4.039427
+    21-15 期望能增進廣博學習的通識課程                      3.899044
+    21-16期望e化的教學與資訊環境                         3.889486
+    21-17期望實用的教學設備                            4.103345
+    21-18期望舒適的教室空間                            4.236559
+    21-19期望豐富的社團活動資源                          3.871565
+    21-20期望完善的住宿資源                            4.087216
+    21-21期望良好的學生餐廳與膳食規劃                       4.268817
+    21-22期望便利的校園生活機能                          4.272401
+    21-23期望乾淨整潔的校園環境                          4.246117
+    21-24期望便利的交通機能                            4.275986
+    21-25期望清楚實用的租屋資訊                          4.016726
+    21-26期望清楚實用的打工、獎助學金資訊                     4.127838
+    dtype: float64
+    '''
+    #type(df_freshman_Q21_MeanValue)  ## pandas.core.series.Series
+    ### 改變index
+    #df_freshman_Q21_MeanValues_ShortIndex = [idx[7:] for idx in df_freshman_Q21_MeanValues.index]
+    df_freshman_Q21_MeanValues.rename({'21-15 期望能增進廣博學習的通識課程': '21-15期望能增進廣博學習的通識課程'}, inplace=True)
+    # df_freshman_Q21_MeanValues.shape[-1]  ## 26
+    df_freshman_Q21_MeanValues.index = [df_freshman_Q21_MeanValues.index[i][6:] if i<9 else df_freshman_Q21_MeanValues.index[i][7:] for i in range(df_freshman_Q21_MeanValues.shape[-1])]
+    
+    
+    
+    
+    #### Q22
+    # df_freshman.iloc[:,60] ## 22-1
+    # df_freshman.iloc[:,85] ## 22-26
+    df_freshman_Q22 = df_freshman.iloc[:,60:86]  ## [1674 rows x 26 columns]
+    
+    # ### 计算字符串'６不知道'出现的總次数
+    # search_string = '６不知道'
+    # count = 0
+    # for column in df_freshman_Q22.columns:
+    #     if df_freshman_Q22[column].dtype == 'object':  # 确保列的数据类型是字符串
+    #         count += df_freshman_Q22[column].str.contains(search_string).sum()
+    # print(f"'{search_string}' 出现的次数:", count) ## '６不知道' 出现的總次数: 4380
+    # ### 为每一行计算字符串'６不知道'出现的次数
+    # counts = {}
+    # for column in df_freshman_Q22.columns:
+    #     if df_freshman_Q22[column].dtype == 'object':  # 确保列的数据类型是字符串
+    #         counts[column] = df_freshman_Q22[column].str.contains(search_string).sum()
+    # for column, count in counts.items():
+    #     print(f"'{column}' 行中 '{search_string}' 出现的次数: {count}")
+    # '''
+    # '22-1滿意於彈性且有效率的學校行政' 行中 '６不知道' 出现的次数: 252
+    # '22-2滿意於便捷的選課查詢系統' 行中 '６不知道' 出现的次数: 97
+    # '22-3滿意於容易使用的學校網站' 行中 '６不知道' 出现的次数: 38
+    # '22-4  滿意於豐富的專業圖書資源（含期刊、電子資料庫等）' 行中 '６不知道' 出现的次数: 150
+    # '22-5滿意於完善的圖書館設施' 行中 '６不知道' 出现的次数: 108
+    # '22-6滿意於與就業接軌的實習機制' 行中 '６不知道' 出现的次数: 445
+    # '22-7滿意於健全的生活、職涯及諮商輔導機制' 行中 '６不知道' 出现的次数: 268
+    # '22-8滿意於完善的證照輔導與經費補助機制' 行中 '６不知道' 出现的次数: 350
+    # '22-9滿意於完善的競賽輔導與經費補助機制' 行中 '６不知道' 出现的次数: 373
+    # '22-10滿意於豐富的國際交流資源（如交換生、雙聯學位等）' 行中 '６不知道' 出现的次数: 236
+    # '22-11滿意於充足的多元學習機會（如輔系、雙主修等）' 行中 '６不知道' 出现的次数: 237
+    # '22-12滿意於國際化的學習環境（如外語自學中心、外語情境教室、全英語教學等）' 行中 '６不知道' 出现的次数: 179
+    # '22-13滿意於彈性且合理的修課安排' 行中 '６不知道' 出现的次数: 76
+    # '22-14滿意於完善的選課輔導與協助管道' 行中 '６不知道' 出现的次数: 133
+    # '22-15滿意於能增進廣博學習的通識課程' 行中 '６不知道' 出现的次数: 81
+    # '22-16滿意於e化的教學與資訊環境' 行中 '６不知道' 出现的次数: 92
+    # '22-17滿意於實用的教學設備' 行中 '６不知道' 出现的次数: 74
+    # '22-18滿意於舒適的教室空間' 行中 '６不知道' 出现的次数: 33
+    # '22-19滿意於豐富的社團活動資源' 行中 '６不知道' 出现的次数: 157
+    # '22-20滿意於完善的住宿資源' 行中 '６不知道' 出现的次数: 172
+    # '22-21滿意於良好的學生餐廳與膳食規劃' 行中 '６不知道' 出现的次数: 32
+    # '22-22滿意於便利的校園生活機能' 行中 '６不知道' 出现的次数: 37
+    # '22-23滿意於乾淨整潔的校園環境' 行中 '６不知道' 出现的次数: 34
+    # '22-24滿意於便利的交通機能' 行中 '６不知道' 出现的次数: 35
+    # '22-25滿意於清楚實用的租屋資訊' 行中 '６不知道' 出现的次数: 392
+    # '22-26滿意於清楚實用的打工、獎助學金資訊' 行中 '６不知道' 出现的次数: 299
+    # '''
+    
+
+    ### 使用 applymap 方法去掉字串的左右空格
+    df_freshman_Q22 = df_freshman_Q22.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+
+
+    ### 定義將 df_freshman_Q22 中的每个元素轉換為int類型的函數
+    search_string = '６不知道'
+    def convert_to_int_except_special_str(x, special_str=search_string):
+        """
+        将输入转换为整数，除非它等于特定字符串。
+        :param x: 输入值。
+        :param special_str: 需要保留的特定字符串。
+        :return: 转换后的值。
+        """
+        if x == special_str:
+            return x
+        try:
+            return int(x)
+        except ValueError:
+            return x  # 如果无法转换为整数，则返回原始值
+    
+    ### 对 DataFrame df_freshman_Q22 中的每个元素应用转换函数
+    df_freshman_Q22 = df_freshman_Q22.applymap(lambda x: convert_to_int_except_special_str(x))
+    
+    
+    ### 定义一个函数来转换每一行为数值类型，非数值转为 NaN (即為 '６不知道')
+    def to_numeric_ignore_special_str(column):
+        return pd.to_numeric(column, errors='coerce')
+    
+    ### 将每行转换为数值类型，忽略无法转换的值
+    df_freshman_Q22_numeric = df_freshman_Q22.apply(to_numeric_ignore_special_str)
+    
+    ### 计算每行的平均值
+    df_freshman_Q22_MeanValues = df_freshman_Q22_numeric.mean()
+    #type(df_freshman_Q22_MeanValues)  ## pandas.core.series.Series
+    
+    # ### Q22 各項目平均值
+    # print(df_freshman_Q22_MeanValues)
+    # '''
+    # 22-1滿意於彈性且有效率的學校行政                         3.600563
+    # 22-2滿意於便捷的選課查詢系統                           3.544705
+    # 22-3滿意於容易使用的學校網站                           3.623472
+    # 22-4  滿意於豐富的專業圖書資源（含期刊、電子資料庫等）             3.883202
+    # 22-5滿意於完善的圖書館設施                            4.059387
+    # 22-6滿意於與就業接軌的實習機制                          3.667209
+    # 22-7滿意於健全的生活、職涯及諮商輔導機制                     3.718350
+    # 22-8滿意於完善的證照輔導與經費補助機制                      3.670695
+    # 22-9滿意於完善的競賽輔導與經費補助機制                      3.617218
+    # 22-10滿意於豐富的國際交流資源（如交換生、雙聯學位等）              3.805285
+    # 22-11滿意於充足的多元學習機會（如輔系、雙主修等）                3.742519
+    # 22-12滿意於國際化的學習環境（如外語自學中心、外語情境教室、全英語教學等）    3.740468
+    # 22-13滿意於彈性且合理的修課安排                         3.626408
+    # 22-14滿意於完善的選課輔導與協助管道                       3.679429
+    # 22-15滿意於能增進廣博學習的通識課程                       3.560578
+    # 22-16滿意於e化的教學與資訊環境                         3.678255
+    # 22-17滿意於實用的教學設備                            3.665625
+    # 22-18滿意於舒適的教室空間                            3.578306
+    # 22-19滿意於豐富的社團活動資源                          3.566249
+    # 22-20滿意於完善的住宿資源                            3.496671
+    # 22-21滿意於良好的學生餐廳與膳食規劃                       3.468940
+    # 22-22滿意於便利的校園生活機能                          3.455101
+    # 22-23滿意於乾淨整潔的校園環境                          3.775610
+    # 22-24滿意於便利的交通機能                            3.323978
+    # 22-25滿意於清楚實用的租屋資訊                          3.401716
+    # 22-26滿意於清楚實用的打工、獎助學金資訊                     3.425455
+    # dtype: float64
+    # '''
+
+    
+    
+    ### 改變index
+    #df_freshman_Q22_MeanValues_ShortIndex = [idx[8:] for idx in df_freshman_Q22_MeanValues.index]
+    df_freshman_Q22_MeanValues.rename({'22-4  滿意於豐富的專業圖書資源（含期刊、電子資料庫等）': '22-4滿意於豐富的專業圖書資源（含期刊、電子資料庫等）'}, inplace=True)
+    # df_freshman_Q22_MeanValues.shape[-1]  ## 26
+    df_freshman_Q22_MeanValues.index = [df_freshman_Q22_MeanValues.index[i][7:] if i<9 else df_freshman_Q22_MeanValues.index[i][8:] for i in range(df_freshman_Q22_MeanValues.shape[-1])]
+    
+    
+    
+    #### 圖：學生對於本校現在所提供資源或支援事項的期待程度與滿意程度之平均分數
+    # ### 驗證兩個Series 有相同的index 
+    # same_index = df_freshman_Q21_MeanValues.index.equals(df_freshman_Q22_MeanValues.index)
+    # print("两个 Series 有相同的索引:", same_index)  ## 两个 Series 有相同的索引: True
+    # # #### 调整 df_freshman_Q22_MeanValues 的索引顺序，使其与 df_freshman_Q21_MeanValues 相同
+    # # df_freshman_Q22_MeanValues_reindexed = df_freshman_Q22_MeanValues.reindex(df_freshman_Q21_MeanValues.index)
+    # # same_index = df_freshman_Q22_MeanValues_reindexed.index.equals(df_freshman_Q21_MeanValues.index)
+    # # print("两个 Series 有相同的索引:", same_index)  ## 两个 Series 有相同的索引: True
+    
+    
+    #%% (圖) 以下
+    # import matplotlib.pyplot as plt
+    # import matplotlib
+    ### 設置 matplotlib 支持中文的字體: 這裡使用的是 'SimHei' 字體，您也可以替換為任何支持中文的字體
+    matplotlib.rcParams['font.family'] = 'Noto Sans CJK JP'
+    matplotlib.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题 
+    
+    
+    # ### 创建图形和坐标轴
+    # plt.figure(figsize=(10, 6))
+    # ### 绘制第一个 Series
+    # #plt.plot(df_freshman_Q21_MeanValues, label='期待')
+    # ### 绘制第二个 Series
+    # plt.plot(df_freshman_Q22_MeanValues, label='滿意度')
+    # ### 添加一些图形元素
+    # plt.title('資源或支援事項期待與滿意度分數')
+    # plt.xlabel('本校現在所提供的資源或支援事項')
+    # plt.ylabel('分數')
+    # plt.legend()
+    # ### 显示图形
+    # plt.show()
+    
+    
+    # ### 创建图形和坐标轴
+    # plt.figure(figsize=(10, 6))
+    # ### 绘制条形图
+    # plt.barh(df_freshman_Q21_MeanValues.index, df_freshman_Q21_MeanValues, alpha=0.5, label='期待')
+    # plt.barh(df_freshman_Q22_MeanValues.index, df_freshman_Q22_MeanValues, alpha=0.5, label='滿意度', left=df_freshman_Q21_MeanValues)
+    # ### 添加一些图形元素
+    # plt.title('資源或支援事項期待與滿意度分數')
+    # plt.xlabel('分數')
+    # plt.ylabel('本校現在所提供的資源或支援事項')
+    # plt.legend()
+    # ### 显示图形
+    # plt.show()
+    
+    
+    ### 获取索引的数值表示
+    y_values = range(len(df_freshman_Q21_MeanValues.index))
+    ### 创建图形和坐标轴
+    plt.figure(figsize=(10, 9))
+    ### 绘制散点图
+    plt.plot(df_freshman_Q21_MeanValues, y_values, '-b', label='期待', marker='o')
+    plt.plot(df_freshman_Q22_MeanValues, y_values, '-r', label='滿意度', marker='*')
+    ### 设置 Y 轴的刻度标签为索引名称
+    plt.yticks(y_values, df_freshman_Q21_MeanValues.index)
+    ### 添加一些图形元素
+    plt.title('資源或支援事項期待與滿意度分數')
+    plt.xlabel('平均分數')
+    #plt.ylabel('所提供的資源或支援事項')
+    plt.legend()
+    ### 显示网格线
+    plt.grid(True, linestyle='--', linewidth=0.5, color='gray')
+    ### 在Streamlit中显示
+    st.pyplot(plt)
+    #%% (圖)以上
+
+st.markdown("##")  ## 更大的间隔
+
+
+
 
 st.markdown("""
 <style>
