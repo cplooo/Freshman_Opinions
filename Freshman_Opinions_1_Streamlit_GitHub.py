@@ -794,7 +794,7 @@ with st.expander("Q2. 身分別:"):
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df, bar_width = 0.15)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存   
 st.markdown("##")  ## 更大的间隔 
 
 
@@ -4638,7 +4638,7 @@ with st.expander("Q23-5.學校課程能協助我朝著自己的志向發展及�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存    
 st.markdown("##")  ## 更大的间隔
 
 
@@ -4752,7 +4752,7 @@ with st.expander("Q24-1.我能讀懂英文教科書（範圍 1～5；1為非常�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存   
 st.markdown("##")  ## 更大的间隔
 
 
@@ -4792,7 +4792,7 @@ with st.expander("Q24-2.學校訂定的外語畢業門檻，能激勵我加強�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存   
 st.markdown("##")  ## 更大的间隔
 
 
@@ -4832,7 +4832,7 @@ with st.expander("Q24-3.學校提供多元化的外語課程，讓我能充實�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存    
 st.markdown("##")  ## 更大的间隔
 
 
@@ -4872,7 +4872,7 @@ with st.expander("Q24-4.我已通過一種（含一種）以上的外語檢定�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存    
 st.markdown("##")  ## 更大的间隔
 
 
@@ -4912,7 +4912,7 @@ with st.expander("Q24-5.我認為自己在畢業後，能以外語與人有效�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存  
 st.markdown("##")  ## 更大的间隔
 
 
@@ -4936,7 +4936,7 @@ with st.expander("Q24.入學至今，對於「外語能力」的認同程度各�
     
     
     LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=13,xlabel_fontsize=12,ylabel_fontsize=12,yticklabel_fontsize=12,annotation_fontsize=12,legend_fontsize=12,width=10,height=6)
-
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -4986,7 +4986,7 @@ with st.expander("Q25-1.請求同學或學長姐協助解決課業問題（範�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5026,7 +5026,7 @@ with st.expander("Q25-2.協助同學解決課業問題（範圍1～5；1為沒�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5066,7 +5066,7 @@ with st.expander("Q25-3.與同學進行討論或練習來準備考試（範圍1�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5106,7 +5106,7 @@ with st.expander("Q25-4.與同學共同合作完成報告、作業或專題（�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5146,7 +5146,7 @@ with st.expander("Q25-5.與師長討論課堂學習、課業問題（範圍1～5
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5186,7 +5186,7 @@ with st.expander("Q25-6.課前預習並事先整理問題重點（範圍1～5；
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5226,7 +5226,7 @@ with st.expander("Q25-7.在課堂上認真聽講、做筆記（範圍1～5；1�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5266,7 +5266,7 @@ with st.expander("Q25-8.課後複習並歸納老師授課內容（範圍1～5；
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5306,7 +5306,7 @@ with st.expander("Q25-9.主動蒐集課業學習有關資訊（範圍1～5；1�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5346,7 +5346,7 @@ with st.expander("Q25-10.準時上課、不缺席（範圍1～5；1為沒有發�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5386,7 +5386,7 @@ with st.expander("Q25-11.依老師要求繳交作業或報告（範圍1～5；1�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5410,7 +5410,7 @@ with st.expander("Q25.入學至今，課程學習時，各事項發生的頻率�
     
     
     LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=13,xlabel_fontsize=12,ylabel_fontsize=12,yticklabel_fontsize=12,annotation_fontsize=12,legend_fontsize=12,width=10,height=6)
-
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5461,7 +5461,7 @@ with st.expander("Q26-1.學習準備（如課程預習、蒐集資料等）（�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5501,7 +5501,7 @@ with st.expander("Q26-2.修習學校課程（範圍1～5；1為程度非常低�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5541,7 +5541,7 @@ with st.expander("Q26-3.準備證照考試或專業競賽（範圍1～5；1為�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5581,7 +5581,7 @@ with st.expander("Q26-4.寫作業或報告（範圍1～5；1為程度非常低�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5621,7 +5621,7 @@ with st.expander("Q26-5.課外活動（如社團、校隊等）（範圍1～5；
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5661,7 +5661,7 @@ with st.expander("Q26-6.參與社區服務或志工（範圍1～5；1為程度�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5701,7 +5701,7 @@ with st.expander("Q26-7.休閒活動（如運動、聚會、郊遊、讀課外�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5741,7 +5741,7 @@ with st.expander("Q26-8.非學習性的上網或滑手機（範圍1～5；1為�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5781,7 +5781,7 @@ with st.expander("Q26-9.校內外工讀（範圍1～5；1為程度非常低；5�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5821,7 +5821,7 @@ with st.expander("Q26-10.與家人相處（範圍1～5；1為程度非常低；5
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5861,7 +5861,7 @@ with st.expander("Q26-11.男女朋友相處（範圍1～5；1為程度非常低�
     # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
     # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
     Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
-    
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
@@ -5885,7 +5885,7 @@ with st.expander("Q26.學期上課期間平均「每天」花在各種活動的�
     
     
     LevelGroupsDraw(df_freshman_r,level1=1,level2=2,level3=3,level4=4,level5=5,figure_title=figure_title,title_fontsize=13,xlabel_fontsize=12,ylabel_fontsize=12,yticklabel_fontsize=12,annotation_fontsize=12,legend_fontsize=12,width=10,height=6)
-
+    plt.close()  # 關閉當前圖形以釋放內存
 st.markdown("##")  ## 更大的间隔
 
 
