@@ -7992,7 +7992,7 @@ st.markdown("##")  ## 更大的间隔
 
 ###### Q35 其他建議事項（如有其他建議學校改善的事項，敬請提出）
 # with st.expander("Q35.其他建議學校改善的事項（1.只能以學系方式查詢(不開放院校查詢). 2.需輸入學系密碼. 3.需輸入學系名稱('中文系','企管系','化科系','台文系','國企系','國際資訊學士學位學程','大傳系','寰宇外語教育系','寰宇管理學程','應化系','日文系','會計系','法律原專','法律系','生態系','社工原專','社工系','英文系','西文系','觀光系','財工系','財金系','資傳系','資工系','資科系','資管系','食營系')).:"):
-with st.expander("Q35.其他建議學校改善的事項（1.只能以學系方式查詢(不開放院校查詢). 2.需輸入學系密碼.:"):
+with st.expander("Q35.其他建議學校改善的事項（1.只能以學系方式查詢(不開放院校查詢). 2.需輸入學系密碼.):"):
 
     # df_freshman.iloc[:,176] ##35其他建議事項（如有其他建議學校改善的事項，敬請提出）
     column_index = 176
@@ -8044,41 +8044,76 @@ with st.expander("Q35.其他建議學校改善的事項（1.只能以學系方�
         st.sidebar.title('登入(只能以學系方式查詢. 請輸入「選擇學系」項目之學系密碼)')
         # username = st.sidebar.text_input('學系名稱')
         password = st.sidebar.text_input('輸入學系密碼', type='password')
+        
+        # 檢查登錄信息是否正確
+        if st.sidebar.button('登入'):
+            # if username == USERNAME and password == PASSWORD:
+            # if password == 學系名密碼對應[username]:
+            if password == 學系名密碼對應[choice]:
+                st.sidebar.success('登錄成功！')
+                
+                ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+                # st.write(choice)
+                st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
+                st.write(result_df.to_html(index=False), unsafe_allow_html=True)
+                st.markdown("##")  ## 更大的间隔
+
+                ##### 使用Streamlit畫單一圖 & 比較圖
+                #### 畫比較圖時, 比較單位之選擇:
+                if 系_院_校 == '0':
+                    ## 使用multiselect组件让用户进行多重选择
+                    selected_options = st.multiselect('選擇比較學系：', df_freshman_original['科系'].unique(), default=[choice,'企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
+                if 系_院_校 == '1':
+                    ## 使用multiselect组件让用户进行多重选择
+                    selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
+
+                # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
+                # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
+                Draw(系_院_校, column_index, split_symbol=';', dropped_string='', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
+
+                
+            else:
+                st.sidebar.error('密碼錯誤')
+        # 在未成功登入之前，顯示提示信息
+        if 'success' not in st.session_state:
+            st.write('請在左側輸入帳號和密碼進行登入。')
+
+        
     else:
         st.write('請改以學系方式查詢.') 
     
-    # 檢查登錄信息是否正確
-    if st.sidebar.button('登入'):
-        # if username == USERNAME and password == PASSWORD:
-        # if password == 學系名密碼對應[username]:
-        if password == 學系名密碼對應[choice]:
-            st.sidebar.success('登錄成功！')
+    # # 檢查登錄信息是否正確
+    # if st.sidebar.button('登入'):
+    #     # if username == USERNAME and password == PASSWORD:
+    #     # if password == 學系名密碼對應[username]:
+    #     if password == 學系名密碼對應[choice]:
+    #         st.sidebar.success('登錄成功！')
             
-            ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
-            # st.write(choice)
-            st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
-            st.write(result_df.to_html(index=False), unsafe_allow_html=True)
-            st.markdown("##")  ## 更大的间隔
+    #         ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
+    #         # st.write(choice)
+    #         st.write(f"<h6>{choice}</h6>", unsafe_allow_html=True)
+    #         st.write(result_df.to_html(index=False), unsafe_allow_html=True)
+    #         st.markdown("##")  ## 更大的间隔
 
-            ##### 使用Streamlit畫單一圖 & 比較圖
-            #### 畫比較圖時, 比較單位之選擇:
-            if 系_院_校 == '0':
-                ## 使用multiselect组件让用户进行多重选择
-                selected_options = st.multiselect('選擇比較學系：', df_freshman_original['科系'].unique(), default=[choice,'企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
-            if 系_院_校 == '1':
-                ## 使用multiselect组件让用户进行多重选择
-                selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
+    #         ##### 使用Streamlit畫單一圖 & 比較圖
+    #         #### 畫比較圖時, 比較單位之選擇:
+    #         if 系_院_校 == '0':
+    #             ## 使用multiselect组件让用户进行多重选择
+    #             selected_options = st.multiselect('選擇比較學系：', df_freshman_original['科系'].unique(), default=[choice,'企管系'],key=str(column_index)+'d')  ## # selected_options = ['化科系','企管系']
+    #         if 系_院_校 == '1':
+    #             ## 使用multiselect组件让用户进行多重选择
+    #             selected_options = st.multiselect('選擇比較學院：', df_freshman_original['學院'].unique(), default=[choice,'資訊學院'],key=str(column_index)+'f')
 
-            # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
-            # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
-            Draw(系_院_校, column_index, split_symbol=';', dropped_string='', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
+    #         # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
+    #         # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
+    #         Draw(系_院_校, column_index, split_symbol=';', dropped_string='', sum_choice=1, result_df=result_df, selected_options=selected_options, dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
 
             
-        else:
-            st.sidebar.error('密碼錯誤')
-    # 在未成功登入之前，顯示提示信息
-    if 'success' not in st.session_state:
-        st.write('請在左側輸入帳號和密碼進行登入。')
+    #     else:
+    #         st.sidebar.error('密碼錯誤')
+    # # 在未成功登入之前，顯示提示信息
+    # if 'success' not in st.session_state:
+    #     st.write('請在左側輸入帳號和密碼進行登入。')
 
     
     
