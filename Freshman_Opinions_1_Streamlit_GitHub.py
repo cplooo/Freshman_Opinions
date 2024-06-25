@@ -4155,11 +4155,11 @@ with st.expander("Q22.對於本校所提供資源或支援事項的「滿意程�
     figure_title =choice+': '+'對於本校所提供資源或支援事項的「滿意程度」各項目三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
-    #### 使用 applymap 方法去掉字串的左右空格
-    df_freshman_r = df_freshman_r.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+    #### 使用 map 方法去掉字串的左右空格
+    df_freshman_r = df_freshman_r.map(lambda x: x.strip() if isinstance(x, str) else x)
 
     ####
-    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道' else x)
+    df_freshman_r = df_freshman_r.map(lambda x: np.nan if x == '６不知道' else x)
 
     #### 選擇性地，去掉包含 NaN 的行
     df_freshman_r = df_freshman_r.dropna()
@@ -4284,8 +4284,8 @@ with st.expander("Q21與Q22比較. 對於本校所提供資源或支援事項的
     # '''
     
 
-    ### 使用 applymap 方法去掉字串的左右空格
-    df_freshman_Q22 = df_freshman_Q22.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+    ### 使用 map 方法去掉字串的左右空格
+    df_freshman_Q22 = df_freshman_Q22.map(lambda x: x.strip() if isinstance(x, str) else x)
 
 
     ### 定義將 df_freshman_Q22 中的每个元素轉換為int類型的函數
@@ -4305,7 +4305,7 @@ with st.expander("Q21與Q22比較. 對於本校所提供資源或支援事項的
             return x  # 如果无法转换为整数，则返回原始值
     
     ### 对 DataFrame df_freshman_Q22 中的每个元素应用转换函数
-    df_freshman_Q22 = df_freshman_Q22.applymap(lambda x: convert_to_int_except_special_str(x))
+    df_freshman_Q22 = df_freshman_Q22.map(lambda x: convert_to_int_except_special_str(x))
     
     
     ### 定义一个函数来转换每一行为数值类型，非数值转为 NaN (即為 '６不知道')
@@ -4690,8 +4690,11 @@ with st.expander("Q23.入學至今，對於課程安排的認同程度各項目�
     figure_title =choice+': '+'入學至今，對於課程安排的認同程度各項目三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
+    #### 使用 map 方法去掉字串的左右空格
+    df_freshman_r = df_freshman_r.map(lambda x: x.strip() if isinstance(x, str) else x)
+    
     ####
-    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+    df_freshman_r = df_freshman_r.map(lambda x: np.nan if x == '６不知道' else x)
 
     #### 選擇性地，去掉包含 NaN 的行
     df_freshman_r = df_freshman_r.dropna()
@@ -4924,8 +4927,11 @@ with st.expander("Q24.入學至今，對於「外語能力」的認同程度各�
     figure_title =choice+': '+'入學至今，對於「外語能力」的認同程度各項目三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
+    #### 使用 map 方法去掉字串的左右空格
+    df_freshman_r = df_freshman_r.map(lambda x: x.strip() if isinstance(x, str) else x)
+
     ####
-    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+    df_freshman_r = df_freshman_r.map(lambda x: np.nan if x == '６不知道' else x)
 
     #### 選擇性地，去掉包含 NaN 的行
     df_freshman_r = df_freshman_r.dropna()
@@ -5398,8 +5404,12 @@ with st.expander("Q25.入學至今，課程學習時，各事項發生的頻率�
     figure_title =choice+': '+'入學至今，課程學習時，各事項發生的頻率之三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
+
+    #### 使用 map 方法去掉字串的左右空格
+    df_freshman_r = df_freshman_r.map(lambda x: x.strip() if isinstance(x, str) else x)
+
     ####
-    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+    df_freshman_r = df_freshman_r.map(lambda x: np.nan if x == '６不知道' else x)
 
     #### 選擇性地，去掉包含 NaN 的行
     df_freshman_r = df_freshman_r.dropna()
@@ -5873,8 +5883,12 @@ with st.expander("Q26.學期上課期間平均「每天」花在各種活動的�
     figure_title =choice+': '+'學期上課期間平均「每天」花在各種活動的時間程度之各項目三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
+
+    #### 使用 map 方法去掉字串的左右空格
+    df_freshman_r = df_freshman_r.map(lambda x: x.strip() if isinstance(x, str) else x)
+
     ####
-    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+    df_freshman_r = df_freshman_r.map(lambda x: np.nan if x == '６不知道' else x)
 
     #### 選擇性地，去掉包含 NaN 的行
     df_freshman_r = df_freshman_r.dropna()
@@ -6269,8 +6283,12 @@ with st.expander("Q27.入學至今，對於課程學習的態度之各項目三�
     figure_title =choice+': '+'入學至今，對於課程學習的態度之各項目三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
+
+    #### 使用 map 方法去掉字串的左右空格
+    df_freshman_r = df_freshman_r.map(lambda x: x.strip() if isinstance(x, str) else x)
+
     ####
-    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+    df_freshman_r = df_freshman_r.map(lambda x: np.nan if x == '６不知道' else x)
 
     #### 選擇性地，去掉包含 NaN 的行
     df_freshman_r = df_freshman_r.dropna()
@@ -6785,8 +6803,12 @@ with st.expander("Q28.入學至今，對於課程學習的掌握度之各項目�
     figure_title =choice+': '+'入學至今，對於課程學習的掌握度之各項目三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
+
+    #### 使用 map 方法去掉字串的左右空格
+    df_freshman_r = df_freshman_r.map(lambda x: x.strip() if isinstance(x, str) else x)
+
     ####
-    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+    df_freshman_r = df_freshman_r.map(lambda x: np.nan if x == '６不知道' else x)
 
     #### 選擇性地，去掉包含 NaN 的行
     df_freshman_r = df_freshman_r.dropna()
@@ -7300,8 +7322,12 @@ with st.expander("Q29.下列各種授課方式對於學習上的幫助程度三�
     figure_title =choice+': '+'下列各種授課方式對於學習上的幫助程度三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
+
+    #### 使用 map 方法去掉字串的左右空格
+    df_freshman_r = df_freshman_r.map(lambda x: x.strip() if isinstance(x, str) else x)
+
     ####
-    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+    df_freshman_r = df_freshman_r.map(lambda x: np.nan if x == '６不知道' else x)
 
     #### 選擇性地，去掉包含 NaN 的行
     df_freshman_r = df_freshman_r.dropna()
@@ -7777,11 +7803,11 @@ with st.expander("Q33.入學至今，下列敘述符合我現狀的程度之三�
     figure_title =choice+': '+'入學至今，下列敘述符合我現狀的程度之三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
-    #### 使用 applymap 方法去掉字串的左右空格
-    df_freshman_r = df_freshman_r.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+    #### 使用 map 方法去掉字串的左右空格
+    df_freshman_r = df_freshman_r.map(lambda x: x.strip() if isinstance(x, str) else x)
     
     ####
-    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道' else x)
+    df_freshman_r = df_freshman_r.map(lambda x: np.nan if x == '６不知道' else x)
 
     #### 選擇性地，去掉包含 NaN 的行
     df_freshman_r = df_freshman_r.dropna()
@@ -7975,11 +8001,11 @@ with st.expander("Q34.入學至今，對於本校「整體狀況」的認同程�
     figure_title =choice+': '+'入學至今，對於本校「整體狀況」的認同程度之三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
-    #### 使用 applymap 方法去掉字串的左右空格
-    df_freshman_r = df_freshman_r.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+    #### 使用 map 方法去掉字串的左右空格
+    df_freshman_r = df_freshman_r.map(lambda x: x.strip() if isinstance(x, str) else x)
     
     ####
-    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道' else x)
+    df_freshman_r = df_freshman_r.map(lambda x: np.nan if x == '６不知道' else x)
 
     #### 選擇性地，去掉包含 NaN 的行
     df_freshman_r = df_freshman_r.dropna()
