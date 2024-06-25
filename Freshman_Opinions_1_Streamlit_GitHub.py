@@ -7972,8 +7972,11 @@ with st.expander("Q34.入學至今，對於本校「整體狀況」的認同程�
     figure_title =choice+': '+'入學至今，對於本校「整體狀況」的認同程度之三等級呈現: 低(1+2),中(3),高(4+5)'
     # type(df_freshman_r.iloc[:,0][0])
     
+    #### 使用 applymap 方法去掉字串的左右空格
+    df_freshman_r = df_freshman_r.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+    
     ####
-    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道 ' else x)
+    df_freshman_r = df_freshman_r.applymap(lambda x: np.nan if x == '６不知道' else x)
 
     #### 選擇性地，去掉包含 NaN 的行
     df_freshman_r = df_freshman_r.dropna()
