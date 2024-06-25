@@ -7991,7 +7991,9 @@ st.markdown("##")  ## 更大的间隔
 
 
 ###### Q35 其他建議事項（如有其他建議學校改善的事項，敬請提出）
-with st.expander("Q35.其他建議學校改善的事項（1.只能以學系方式查詢(不開放院校查詢). 2.需輸入密碼. 3.需輸入學系名稱('中文系','企管系','化科系','台文系','國企系','國際資訊學士學位學程','大傳系','寰宇外語教育系','寰宇管理學程','應化系','日文系','會計系','法律原專','法律系','生態系','社工原專','社工系','英文系','西文系','觀光系','財工系','財金系','資傳系','資工系','資科系','資管系','食營系'.):"):
+# with st.expander("Q35.其他建議學校改善的事項（1.只能以學系方式查詢(不開放院校查詢). 2.需輸入學系密碼. 3.需輸入學系名稱('中文系','企管系','化科系','台文系','國企系','國際資訊學士學位學程','大傳系','寰宇外語教育系','寰宇管理學程','應化系','日文系','會計系','法律原專','法律系','生態系','社工原專','社工系','英文系','西文系','觀光系','財工系','財金系','資傳系','資工系','資科系','資管系','食營系')).:"):
+with st.expander("Q35.其他建議學校改善的事項（1.只能以學系方式查詢(不開放院校查詢). 2.需輸入學系密碼.:"):
+
     # df_freshman.iloc[:,176] ##35其他建議事項（如有其他建議學校改善的事項，敬請提出）
     column_index = 176
     item_name = "其他建議學校改善的事項"
@@ -8039,16 +8041,17 @@ with st.expander("Q35.其他建議學校改善的事項（1.只能以學系方�
     
     # 創建登錄表單
     if 系_院_校 == '0':
-        st.sidebar.title('登入(只能以學系方式查詢)')
-        username = st.sidebar.text_input('學系名稱')
-        password = st.sidebar.text_input('密碼', type='password')
+        st.sidebar.title('登入(只能以學系方式查詢. 請輸入「選擇學系」項目之學系密碼)')
+        # username = st.sidebar.text_input('學系名稱')
+        password = st.sidebar.text_input('輸入學系密碼', type='password')
     else:
         st.write('請改以學系方式查詢.') 
     
     # 檢查登錄信息是否正確
     if st.sidebar.button('登入'):
         # if username == USERNAME and password == PASSWORD:
-        if password == 學系名密碼對應[username]:
+        # if password == 學系名密碼對應[username]:
+        if password == 學系名密碼對應[choice]:
             st.sidebar.success('登錄成功！')
             
             ##### 使用Streamlit展示DataFrame "result_df"，但不显示索引
