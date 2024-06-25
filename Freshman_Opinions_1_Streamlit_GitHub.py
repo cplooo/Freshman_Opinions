@@ -8069,7 +8069,7 @@ with st.expander("Q35.其他建議學校改善的事項（1.只能以學系方�
 
                 # Draw(系_院_校, column_index, ';', '沒有工讀', 1, result_df, selected_options, dataframes, combined_df)
                 # Draw(系_院_校, column_index, split_symbol=';', dropped_string='沒有工讀', sum_choice=1, result_df, selected_options)
-                Draw(系_院_校, column_index, split_symbol=';', dropped_string='', sum_choice=1, result_df=result_df, selected_options=[choice], dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
+                # Draw(系_院_校, column_index, split_symbol=';', dropped_string='', sum_choice=1, result_df=result_df, selected_options=[choice], dataframes=dataframes, combined_df=combined_df, width1=10,heigh1=6,width2=11,heigh2=8,width3=10,heigh3=6,title_fontsize=15,xlabel_fontsize = 14,ylabel_fontsize = 14,legend_fontsize = 14,xticklabel_fontsize = 14, yticklabel_fontsize = 14, annotation_fontsize = 14,bar_width = 0.1, fontsize_adjust=0)
 
                 
             else:
